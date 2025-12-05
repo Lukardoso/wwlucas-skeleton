@@ -9,6 +9,8 @@ export default function Welcome({
 }) {
     const { auth } = usePage<SharedData>().props;
 
+    console.log(usePage<SharedData>().props);
+
     return (
         <>
             <Head title="Welcome">
