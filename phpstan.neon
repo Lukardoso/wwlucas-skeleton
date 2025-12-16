@@ -61,21 +61,6 @@ parameters:
           count: 5
           path: tests/Feature/Auth/PasswordResetTest.php
 
-        - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:assertAuthenticated\(\)\.$#'
-          identifier: method.notFound
-          count: 1
-          path: tests/Feature/Auth/RegistrationTest.php
-
-        - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
-          identifier: method.notFound
-          count: 1
-          path: tests/Feature/Auth/RegistrationTest.php
-
-        - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:post\(\)\.$#'
-          identifier: method.notFound
-          count: 1
-          path: tests/Feature/Auth/RegistrationTest.php
-
         - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
           identifier: method.notFound
           count: 2
@@ -90,16 +75,6 @@ parameters:
           identifier: method.notFound
           count: 2
           path: tests/Feature/Auth/VerificationNotificationTest.php
-
-        - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
-          identifier: method.notFound
-          count: 1
-          path: tests/Feature/DashboardTest.php
-
-        - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:get\(\)\.$#'
-          identifier: method.notFound
-          count: 2
-          path: tests/Feature/DashboardTest.php
 
         - message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:actingAs\(\)\.$#'
           identifier: method.notFound

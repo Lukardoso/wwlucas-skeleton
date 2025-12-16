@@ -65,11 +65,15 @@
         "stan": [
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
-        "teststan": [
+        "testfull": [
             "composer run test",
-            "composer run stan"
+            "composer run stan",
+            "./vendor/bin/pint --test"
         ],
-        "post-autoload-dump": [
+        "pint": [
+            "./vendor/bin/pint"
+        ],
+        "st-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
