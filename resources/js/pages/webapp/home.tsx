@@ -1,4 +1,4 @@
-import { Button } from "@headlessui/react";
+import Layout from "@/layouts/webapp/layout";
 import { router } from "@inertiajs/react";
 
 export default function Home() {
@@ -6,10 +6,12 @@ export default function Home() {
         router.post("/logout");
     }
     return (
-        <div>
-            <h1>Home</h1>
-
-            <Button onClick={logout}>Logout</Button>
-        </div>
+        <Layout>
+            <div>
+                <h1>Home</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit deserunt saepe distinctio, placeat illo cumque enim, ratione repellendus minus voluptas dolores deleniti quo quidem earum alias asperiores soluta? Aliquid fuga quidem assumenda ullam praesentium eaque corrupti ab animi ratione accusantium quod, explicabo aperiam excepturi, consequuntur iste iure. Eos, facere quam.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquid sunt eligendi esse impedit iure vero rerum voluptate porro atque? Repellendus quidem laudantium natus tempora, inventore in incidunt dolor obcaecati velit eos labore doloremque, temporibus vel magni. Placeat ipsum veniam nisi sequi? Accusantium ab illum exercitationem repellendus velit temporibus quae voluptates delectus necessitatibus voluptate. Eligendi maxime dicta, aliquid ratione error sit accusamus vitae iure mollitia voluptatibus, aut unde voluptatum? Rem iusto debitis culpa ipsum necessitatibus atque mollitia recusandae vero quaerat aperiam deserunt in dolore eius exercitationem sunt, voluptas eum ipsa veniam dolorem quas asperiores quam! Totam quas eum nihil error at quod aperiam nemo quo, voluptatem reprehenderit velit optio quidem placeat similique dolorem impedit alias odit voluptas quia architecto enim. Eum voluptatibus placeat officiis maxime, enim quod consequuntur culpa tempore quis quos magni voluptas, fugit natus veniam nemo optio quibusdam. Dolore impedit cumque, tempore quidem quo temporibus odio fugiat. Deleniti itaque nesciunt voluptates molestiae necessitatibus? Tempora, eaque cumque reprehenderit voluptates temporibus a exercitationem fugit aliquid quas in dolorem odit cum accusantium alias suscipit officia dolorum tempore? Voluptates dolor qui unde ipsam praesentium cupiditate illum culpa suscipit rem, ipsa repudiandae iure minus voluptate beatae soluta eaque harum modi neque eligendi nisi perspiciatis delectus fuga voluptas. Consectetur autem dicta laborum consequuntur modi sequi, nobis eum ullam soluta quo assumenda provident possimus, iste odio architecto fuga eligendi eos distinctio fugit laudantium nihil expedita similique eius ipsa. Eum labore culpa autem ad, iusto incidunt, est itaque quos illum, velit a veritatis minus ea assumenda nisi neque architecto mollitia aperiam quae hic quaerat quas. Quas omnis dolore veniam voluptatem natus recusandae quasi ipsa placeat expedita nostrum adipisci ex eos obcaecati, itaque doloremque eius ratione molestiae minima dolores aut! Iure sed rem eveniet dignissimos, molestiae eius neque dolor? Incidunt fugiat soluta est deleniti architecto laboriosam, excepturi sed! Quasi incidunt enim aut consequatur et, soluta explicabo quidem, inventore a illum praesentium ab voluptas. Amet corporis, sequi aperiam aliquid eius quia atque minima modi, veniam aspernatur quasi reiciendis sapiente tempora fugiat iusto laborum, necessitatibus quis hic recusandae? Suscipit quas nobis inventore incidunt explicabo nihil culpa officia dolores consequatur id at molestiae quo dolor, sint nisi illo quam et ad autem quaerat aut distinctio obcaecati? Autem omnis eveniet unde maxime perspiciatis veniam quasi esse numquam inventore ducimus soluta explicabo mollitia ullam quae laudantium neque, vero voluptatum officiis. Velit eum ea in officia accusamus dolorum quisquam at libero voluptatibus alias eos, amet obcaecati eius! Qui tempore sed incidunt obcaecati corporis, animi necessitatibus mollitia numquam delectus sunt dolor! Repellat consectetur saepe doloribus laborum labore consequuntur quas nihil illum iusto asperiores dignissimos architecto eveniet beatae, reiciendis quibusdam rerum explicabo, blanditiis dolores assumenda totam maiores ad modi voluptate hic. Quos voluptates eaque modi et iusto eos, autem commodi ipsam aut quod alias explicabo doloremque illum nemo iste minima. Sequi soluta recusandae dolorum ea molestiae saepe. Enim beatae quas corrupti, incidunt ipsa iure dolore, veniam consequatur soluta velit aperiam, fugit officiis odit. Tempora alias illo nemo minus eos, dignissimos non possimus enim minima molestiae?</p>
+            </div>
+        </Layout>
     );
 }
