@@ -1,4 +1,6 @@
+import AppLogo from "@/components/app-logo";
 import MobileMenuIcon from "@/components/mobile-menu-icon";
+import ProfileMenu from "@/components/profile-menu";
 import { Head } from "@inertiajs/react"
 
 export default function MobileLayout({ children }: { children: React.ReactNode }) {
@@ -20,9 +22,10 @@ function Header() {
         <div>
             <Head title="Mobile layout" />
 
-            <div className="p-4 flex justify-between bg-primary text-secondary">
-                <div>LOGO</div>
-                <div>Hamb</div>
+            <div className="h-32 p-4 flex items-center justify-between bg-primary text-secondary">
+                <AppLogo />
+                
+                <ProfileMenu />
             </div>
         </div>
     );
@@ -30,7 +33,7 @@ function Header() {
 
 function BottomMenu() {
     return (
-        <div className="fixed bottom-0 w-full flex justify-center pb-2 backdrop-blur-[0.07rem]">
+        <div className="fixed bottom-0 w-full flex justify-center pb-2 sm:pb-8 backdrop-blur-[0.07rem]">
             <div className="w-[95vw] px-4 py-2 flex justify-between border shadow rounded-full bg-secondary text-primary">
             
                 <MobileMenuIcon href="#" src="/icons/menu/fallback.svg" label="Estimates" />

@@ -5,7 +5,7 @@ export default function MobileMenuIcon({ src, label, href }: { src: string, labe
     return (
         <Link href={href} className="grid place-items-center text-center">
             <img src={src} alt={`${label}-icon`} className="h-7 w-7" />
-            <p className="text-xs">{label}</p>
+            <p className="text-xs sm:text-base">{label}</p>
         </Link>
     );
 }
