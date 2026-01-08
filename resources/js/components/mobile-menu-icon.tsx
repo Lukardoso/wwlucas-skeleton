@@ -1,11 +1,11 @@
-import { Link } from "@inertiajs/react";
+import { MenuItem } from "@/types";
 
-export default function MobileMenuIcon({ src, label, href }: { src: string, label: string, href: string }) {
+export default function MobileMenuIcon({ menu, handleSubmenu }: { menu: MenuItem, handleSubmenu: (submenu: MenuItem) => void }) {
 
     return (
-        <Link href={href} className="grid place-items-center text-center">
-            <img src={src} alt={`${label}-icon`} className="h-7 w-7" />
-            <p className="text-xs sm:text-base">{label}</p>
-        </Link>
+        <button onClick={() => handleSubmenu(menu)} className="grid place-items-center text-center">
+            <img src={menu.icon} alt={`${menu.title}-icon`} className="h-6 w-6" />
+            <p className="text-xs sm:text-base">{menu.title}</p>
+        </button>
     );
 }
