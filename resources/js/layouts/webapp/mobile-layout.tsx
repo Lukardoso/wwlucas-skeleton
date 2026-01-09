@@ -1,13 +1,14 @@
 import { router } from "@inertiajs/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MenuItem } from "@/types";
 import Arrow from "@/components/arrow";
 import MobileMenuIcon from "@/components/mobile-menu-icon";
 import ProfileMenu from "@/components/profile-menu";
-import menus from "@/pages/webapp/menuWiring";
+import ConfigContext from "@/pages/webapp/contexts/config-context";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
     const [submenus, setSubmenus] = useState<MenuItem[]>([]);
+    const { menus } = useContext(ConfigContext);
 
     const handleMenu = (menu: MenuItem) => {
         if (menu.href) {
@@ -24,7 +25,6 @@ export default function MobileLayout({ children, title }: { children: React.Reac
 
             <div className="pb-20 sm:pb-32 overflow-auto">
                 {submenus.length > 0 ? (
-
                     <div className="sm:max-w-lg mx-4 mt-8 sm:mx-auto bg-white rounded shadow overflow-hidden animate-slide-left">
                         {submenus.map((submenu) => (
                             <div key={submenu.title} onClick={() => handleMenu(submenu || [])} className="px-4 pt-2 flex items-center gap-4 hover:bg-neutral-200 animate-slide-left">
@@ -37,7 +37,6 @@ export default function MobileLayout({ children, title }: { children: React.Reac
                             </div>
                         ))}
                     </div>
-
                 ) : children}
             </div>
 
