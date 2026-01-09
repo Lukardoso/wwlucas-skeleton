@@ -4,7 +4,8 @@ const menus: MenuItem[] = [
     {
         title: 'Menu 1',
         icon: '/icons/menu/fallback.svg',
-        href: '/'
+        selected_icon: '/icons/menu/selected-fallback.svg',
+        href: '/test'
     },
     {
         title: 'Menu 2',
@@ -24,6 +25,7 @@ const menus: MenuItem[] = [
     {
         title: 'Others',
         icon: '/icons/menu/fallback.svg',
+        selected_icon: '/icons/menu/selected-fallback.svg',
         submenus: [
             {
                 title: 'Menu 5',
@@ -41,6 +43,11 @@ const menus: MenuItem[] = [
                     },
                     {
                         title: 'Menu 8',
+                        icon: '/icons/menu/fallback.svg',
+                        href: '/'
+                    },
+                    {
+                        title: 'Menu 9',
                         icon: '/icons/menu/fallback.svg',
                         href: '/'
                     }

@@ -12,5 +12,9 @@ Route::domain("app.$domain")->group(function () {
             return Inertia::render('webapp/home');
         })->name('webapp.home');
 
+        Route::get('/test', function () {
+            return Inertia::render('webapp/home');
+        })->name('webapp.test');
+
     });
 });

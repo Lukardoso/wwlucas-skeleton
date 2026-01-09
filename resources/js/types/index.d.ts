@@ -45,6 +45,7 @@ export interface User {
 interface BaseMenuItem {
     title: string;
     icon: string;
+    selected_icon?: string;
 }
 
 interface MenuItemWithHref extends BaseMenuItem {
