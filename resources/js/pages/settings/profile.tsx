@@ -10,7 +10,7 @@ import { User } from "@/types";
 
 export default function Profile() {
     const user = usePage<{ auth: { user: User } }>().props.auth.user;
-    const { translate } = useTranslate(profileSheet);
+    const { translate } = useTranslate(profileSheet, "pt");
 
     return (
         <Layout title="Perfil">

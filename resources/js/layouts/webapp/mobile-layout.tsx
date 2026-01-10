@@ -1,11 +1,9 @@
 import { router } from "@inertiajs/react";
 import { useContext, useState } from "react";
 import { MenuItem } from "@/types";
-import Arrow from "@/components/arrow";
 import MobileMenuIcon from "@/components/mobile-menu-icon";
 import ProfileMenu from "@/components/profile-menu";
 import ConfigContext from "@/pages/webapp/contexts/config-context";
-import { Menu } from "lucide-react";
 import MenuInLine from "@/components/menu-inline";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
@@ -29,7 +27,8 @@ export default function MobileLayout({ children, title }: { children: React.Reac
                 {submenus.length > 0 ? (
                     <div className="sm:max-w-lg mx-4 mt-8 sm:mx-auto bg-white rounded shadow overflow-hidden animate-slide-left">
                         {submenus.map((submenu) => (
-                            <MenuInLine title={submenu.title} icon={submenu.icon} onClick={() => handleMenu(submenu)} />
+                            <MenuInLine title={submenu.title} icon={submenu.icon} onClick={() => handleMenu(submenu)}
+                                className="px-4 pt-2 animate-slide-left active:bg-neutral-200" />
                         ))}
                     </div>
                 ) : children}
