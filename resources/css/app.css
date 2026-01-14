@@ -63,10 +63,11 @@
     --color-brand: var(--brand);
 
     --animate-slide-left: slide-left 0.2s ease-in-out;
+    --animate-slide-up: slide-up 0.2s ease-in-out;
 }
 
 :root {
-    --brand: oklch(47.41% 0.20065 313.268);
+    --brand: oklch(57.376% 0.11975 257.188);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -155,5 +156,15 @@
 
     to {
         transform: translateX(0);
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }

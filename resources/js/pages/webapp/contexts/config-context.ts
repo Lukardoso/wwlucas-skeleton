@@ -1,4 +1,4 @@
-import { MenuItem } from "@/types";
+import { MenuItem } from "@/types/menu-items";
 import { createContext } from "react";
 
 const ConfigContext = createContext<{
@@ -10,7 +10,7 @@ const ConfigContext = createContext<{
     menus: [],
     permissions: [],
     selectedMenu: '',
-    setSelectedMenu: () => {}
+    setSelectedMenu: () => { }
 });
 
 export default ConfigContext;

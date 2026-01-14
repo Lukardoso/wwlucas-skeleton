@@ -18,7 +18,7 @@ export default function Layout({ children, title }: { children: React.ReactNode,
     return (
         <ConfigContext.Provider value={{menus: allowedMenus, permissions: permissions, selectedMenu: selectedMenu, setSelectedMenu: setSelectedMenu }}>
 
-            <div className="min-h-screen">
+            <div className="min-h-screen bg-neutral-100">
                 <Head title={title} />
 
                 <Layout title={title}>{children}</Layout>

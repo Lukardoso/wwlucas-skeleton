@@ -5,7 +5,7 @@ function permissionMap(permissions: string[], menus: MenuItem[]) {
         return menus;
     }
 
-    const filtered = menus.filter(menu => permissions.includes(menu.title));
+    const filtered = menus.filter(menu => permissions.includes(menu.permission));
 
     const withSubmenus = (): MenuItem[] => {
         return filtered.map(menu => {

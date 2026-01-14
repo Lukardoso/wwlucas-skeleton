@@ -1,60 +1,101 @@
-import { MenuItem } from "@/types";
+import { MenuItem } from "@/types/menu-items";
 
 const menus: MenuItem[] = [
     {
-        title: 'Menu 1',
-        icon: '/icons/menu/fallback.svg',
-        selected_icon: '/icons/menu/selected-fallback.svg',
-        href: '/test'
+        title: "Home",
+        permission: "home",
+        href: "/",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
     },
     {
-        title: 'Menu 2',
-        icon: '/icons/menu/fallback.svg',
-        href: '/'
-    },
-    {
-        title: 'Menu 3',
-        icon: '/icons/menu/fallback.svg',
-        href: '/'
-    },
-    {
-        title: 'Menu 4',
-        icon: '/icons/menu/fallback.svg',
-        href: '/'
-    },
-    {
-        title: 'Others',
-        icon: '/icons/menu/fallback.svg',
-        selected_icon: '/icons/menu/selected-fallback.svg',
+        title: "Resource A",
+        permission: "resourceA",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
         submenus: [
             {
-                title: 'Menu 5',
-                icon: '/icons/menu/fallback.svg',
-                href: '/'
+                title: "New",
+                permission: "createResource",
+                href: "/test",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
             },
             {
-                title: 'Menu 6',
-                icon: '/icons/menu/fallback.svg',
-                submenus: [
-                    {
-                        title: 'Menu 7',
-                        icon: '/icons/menu/fallback.svg',
-                        href: '/'
-                    },
-                    {
-                        title: 'Menu 8',
-                        icon: '/icons/menu/fallback.svg',
-                        href: '/'
-                    },
-                    {
-                        title: 'Menu 9',
-                        icon: '/icons/menu/fallback.svg',
-                        href: '/'
-                    }
-                ]
+                title: "List",
+                permission: "listResource",
+                href: "/resource-a/list",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
             }
         ]
     },
+    {
+        title: "Resource B",
+        permission: "resourceB",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
+        submenus: [
+            {
+                title: "New",
+                permission: "createResource",
+                href: "/resource-b/new",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            },
+            {
+                title: "List",
+                permission: "listResource",
+                href: "/resource-b/list",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            }
+        ]
+    },
+    {
+        title: "Resource C",
+        permission: "resourceC",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
+        submenus: [
+            {
+                title: "New",
+                permission: "createResource",
+                href: "/resource-c/new",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            },
+            {
+                title: "List",
+                permission: "listResource",
+                href: "/resource-c/list",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            }
+        ]
+    },
+    {
+        title: "Others",
+        permission: "resourceD",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
+        submenus: [
+            {
+                title: "New",
+                permission: "createResource",
+                href: "/resource-d/new",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            },
+            {
+                title: "List",
+                permission: "listResource",
+                href: "/resource-d/list",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            }
+        ]
+    }
 ];
 
 export default menus;

@@ -13,7 +13,7 @@ Route::domain("app.$domain")->group(function () {
         })->name('webapp.home');
 
         Route::get('/test', function () {
-            return Inertia::render('webapp/home');
+            return "Auepa";
         })->name('webapp.test');
 
     });

@@ -41,21 +41,3 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
-
-interface BaseMenuItem {
-    title: string;
-    icon: string;
-    selected_icon?: string;
-}
-
-interface MenuItemWithHref extends BaseMenuItem {
-    href: string;
-    submenus?: never;
-}
-
-interface MenuItemWithSubmenus extends BaseMenuItem {
-    href?: never;
-    submenus: MenuItem[];
-}
-
-export type MenuItem = MenuItemWithHref | MenuItemWithSubmenus;
