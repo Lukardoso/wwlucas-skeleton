@@ -1,16 +1,16 @@
 import useTranslate from "@/hooks/useTranslate";
+import { usePage } from "@inertiajs/react";
+import { User } from "@/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Layout from "@/layouts/webapp/layout";
 import profileSheet from "@/translateSheets/profileSheet";
 import AvatarFallback from "@/components/avatarfallback";
-import { usePage } from "@inertiajs/react";
-import { User } from "@/types";
 
 export default function Profile() {
     const user = usePage<{ auth: { user: User } }>().props.auth.user;
-    const { translate } = useTranslate(profileSheet, "pt");
+    const { translate } = useTranslate(profileSheet);
 
     return (
         <Layout title="Perfil">
@@ -28,10 +28,10 @@ export default function Profile() {
 
                     <div className="mt-4">
                         <Label>{translate("Atual")}:
-                            <Input type="password" placeholder="*****" />
+                            <Input type="password" />
                         </Label>
                         <Label>{translate("Nova")}:
-                            <Input type="password" placeholder="*****" />
+                            <Input type="password" />
                         </Label>
 
                         <Button className="mt-4 w-full">{translate("Salvar")}</Button>

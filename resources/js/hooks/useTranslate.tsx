@@ -4,7 +4,7 @@ type TranslateSheet = {
     [key: string]: { [key: string]: string }
 }
 
-export default function useTranslate(tSheet?: TranslateSheet, forceLang?: string) {
+export default function useTranslate(tSheet: TranslateSheet, forceLang?: string) {
     const translateSheet = tSheet;
     const [preferedLang, setPreferedLang] = useState(localStorage.getItem('lang') || navigator.language.replace('-', '_'));
 

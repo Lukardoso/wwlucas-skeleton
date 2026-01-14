@@ -1,10 +1,12 @@
 import { router } from "@inertiajs/react";
 import { useContext, useState } from "react";
-import { MenuItem } from "@/types";
 import MobileMenuIcon from "@/components/mobile-menu-icon";
 import ProfileMenu from "@/components/profile-menu";
 import ConfigContext from "@/pages/webapp/contexts/config-context";
 import MenuInLine from "@/components/menu-inline";
+import { MenuItem } from "@/types/menu-items";
+import useTranslate from "@/hooks/useTranslate";
+import menuTranslateSheet from "@/translateSheets/menuTranslateSheet";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
     const [submenus, setSubmenus] = useState<MenuItem[]>([]);
@@ -55,12 +57,33 @@ function Header({ title }: { title: string }) {
 }
 
 function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (submenu: MenuItem) => void }) {
+    const { translate } = useTranslate(menuTranslateSheet);
+
+    // if the length of menus is more than 4, group the remaining menus into 'Others'
+    const compactMenus = () => {
+        if (menus.length <= 4) {
+            return menus;
+        }
+
+        const others = menus.slice(4);
+
+        const compacted = [...menus.slice(0, 4), {
+            title: "Outros",
+            permission: 'others',
+            icon: '/icons/menu/others-circle.svg',
+            selected_icon: '/icons/menu/selected-others-circle.svg',
+            submenus: others
+        } as MenuItem]
+
+        return compacted;
+    }
+
     return (
         <div className="fixed bottom-0 w-full flex justify-center pb-2 sm:pb-8 backdrop-blur-[0.07rem]">
             <div className="w-[95vw] sm:w-[80vw] px-4 py-2 flex justify-evenly border shadow rounded-full bg-white text-black">
                 {
-                    menus.map(menu => (
-                        <MobileMenuIcon key={menu.title} menu={menu} handleMenu={handleMenu} />
+                    compactMenus().map((menu: MenuItem) => (
+                        <MobileMenuIcon key={menu.permission} menu={menu} handleMenu={handleMenu} />
                     ))
                 }
             </div>

@@ -2,7 +2,7 @@ import { MenuItem } from "@/types/menu-items";
 
 const menus: MenuItem[] = [
     {
-        title: "Home",
+        title: "Início",
         permission: "home",
         href: "/",
         icon: "/icons/menu/fallback\.svg",
@@ -75,7 +75,7 @@ const menus: MenuItem[] = [
         ]
     },
     {
-        title: "Others",
+        title: "Resource D",
         permission: "resourceD",
         icon: "/icons/menu/fallback\.svg",
         selected_icon: "/icons/menu/selected-fallback.svg",
@@ -95,7 +95,29 @@ const menus: MenuItem[] = [
                 selected_icon: "/icons/menu/selected-fallback.svg",
             }
         ]
-    }
+    },
+    {
+        title: "Resource E",
+        permission: "resourceE",
+        icon: "/icons/menu/fallback\.svg",
+        selected_icon: "/icons/menu/selected-fallback.svg",
+        submenus: [
+            {
+                title: "New",
+                permission: "createResource",
+                href: "/resource-d/new",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            },
+            {
+                title: "List",
+                permission: "listResource",
+                href: "/resource-d/list",
+                icon: "/icons/menu/fallback\.svg",
+                selected_icon: "/icons/menu/selected-fallback.svg",
+            }
+        ]
+    },
 ];
 
 export default menus;
