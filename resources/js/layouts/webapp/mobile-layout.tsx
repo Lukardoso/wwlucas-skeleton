@@ -6,7 +6,7 @@ import ConfigContext from "@/pages/webapp/contexts/config-context";
 import MenuInLine from "@/components/menu-inline";
 import { MenuItem } from "@/types/menu-items";
 import useTranslate from "@/hooks/useTranslate";
-import menuTranslateSheet from "@/translateSheets/menuTranslateSheet";
+import menuSheet from "@/translateSheets/menuSheet";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
     const [submenus, setSubmenus] = useState<MenuItem[]>([]);
@@ -57,7 +57,7 @@ function Header({ title }: { title: string }) {
 }
 
 function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (submenu: MenuItem) => void }) {
-    const { translate } = useTranslate(menuTranslateSheet);
+    const { translate } = useTranslate(menuSheet);
 
     // if the length of menus is more than 4, group the remaining menus into 'Others'
     const compactMenus = () => {

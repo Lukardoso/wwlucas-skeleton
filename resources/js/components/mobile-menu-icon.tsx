@@ -1,12 +1,12 @@
-import useTranslate from "@/hooks/useTranslate";
-import ConfigContext from "@/pages/webapp/contexts/config-context";
-import menuTranslateSheet from "@/translateSheets/menuTranslateSheet";
 import { MenuItem } from "@/types/menu-items";
 import { useContext, useEffect } from "react";
+import useTranslate from "@/hooks/useTranslate";
+import menuSheet from "@/translateSheets/menuSheet";
+import ConfigContext from "@/pages/webapp/contexts/config-context";
 
 export default function MobileMenuIcon({ menu, handleMenu }: { menu: MenuItem, handleMenu: (submenu: MenuItem) => void }) {
     const config = useContext(ConfigContext);
-    const { translate } = useTranslate(menuTranslateSheet);
+    const { translate } = useTranslate(menuSheet);
 
     useEffect(() => {
         const location = window.location.pathname;

@@ -8,7 +8,7 @@ import ProfileMenu from "@/components/profile-menu";
 
 export default function DesktopLayout({ children, title }: { children: React.ReactNode, title: string }) {
     return (
-        <div className="h-screen grid grid-cols-[300px_1fr] pr-4 overflow-hidden">
+        <div className="h-screen grid grid-cols-[280px_1fr] pr-4 overflow-hidden">
             <Sidebar />
 
             <div className="h-full">
@@ -24,13 +24,11 @@ export default function DesktopLayout({ children, title }: { children: React.Rea
 
 function Sidebar() {
     const { menus } = useContext(ConfigContext);
-    const appName = usePage<{ name: string }>().props.name;
 
     return (
         <div className="h-screen pt-4 pl-4 pr-12 grid grid-rows-[auto_1fr_auto] bg-linear-to-r from-white overflow-hidden">
-            <div className="flex gap-2 items-center opacity-30">
-                <AppLogoIcon className="w-10 h-10 fill-brand" />
-                <h1 className="text-xl font-semibold">{appName}</h1>
+            <div className="grid place-items-center opacity-30">
+                <AppLogoIcon className="w-28 h-8" />
             </div>
 
             <div className="relative py-12 space-y-4 overflow-y-auto no-scrollbar">

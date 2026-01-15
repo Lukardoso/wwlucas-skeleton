@@ -32,7 +32,7 @@ export default function MenuWithDropDown({ menu }: { menu: MenuItem }) {
 
                 <div className="group py-2 flex gap-4 grow justify-between items-center border-b hover:opacity-70 transition-all">
                     <p
-                        className={`max-w-[15ch] capitalize overflow-hidden text-ellipsis text-nowrap ${open ? "text-brand font-semibold" : ""}`}>
+                        className={`max-w-[15ch] capitalize overflow-hidden text-sm text-ellipsis text-nowrap ${open ? "text-brand font-semibold" : ""}`}>
                         {menu.title}
                     </p>
 

@@ -6,7 +6,7 @@ type TranslateSheet = {
 
 export default function useTranslate(tSheet: TranslateSheet, forceLang?: string) {
     const translateSheet = tSheet;
-    const [preferedLang, setPreferedLang] = useState(localStorage.getItem('lang') || navigator.language.replace('-', '_'));
+    const [preferedLang, setPreferedLang] = useState(localStorage.getItem('lang') || navigator.language.substring(0, 2));
 
     useEffect(() => {
         if (forceLang) {

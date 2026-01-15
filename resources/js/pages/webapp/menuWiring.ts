@@ -9,7 +9,7 @@ const menus: MenuItem[] = [
         selected_icon: "/icons/menu/selected-fallback.svg",
     },
     {
-        title: "Resource A",
+        title: "Resource A Long Name",
         permission: "resourceA",
         icon: "/icons/menu/fallback\.svg",
         selected_icon: "/icons/menu/selected-fallback.svg",
