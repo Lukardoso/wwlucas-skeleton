@@ -46,5 +46,9 @@ export default {
     "The password is incorrect.": {
         "pt": "A senha está incorreta.",
         "es": "La contraseña es incorrecta."
+    },
+    "Confirme a nova senha": {
+        "en": "Confirm new password",
+        "es": "Confirme la nueva contraseña"
     }
 }

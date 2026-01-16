@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AvatarController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,6 +17,9 @@ Route::domain("app.$domain")->group(function () {
         Route::get('/test', function () {
             return Inertia::render('webapp/home');
         })->name('webapp.test');
+
+        Route::get('/avatar', [AvatarController::class, 'show'])->name('avatar.show');
+        Route::put('/avatar', [AvatarController::class, 'update'])->name('avatar.update');
 
     });
 });

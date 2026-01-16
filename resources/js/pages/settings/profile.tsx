@@ -1,29 +1,26 @@
-import useTranslate from "@/hooks/useTranslate";
 import { Form, Link, usePage } from "@inertiajs/react";
 import PasswordController from "@/actions/App/Http/Controllers/Settings/PasswordController";
 import { User } from "@/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AvatarCropInput } from '@/components/avatar-crop-input';
+import useTranslate from "@/hooks/useTranslate";
 import Layout from "@/layouts/webapp/layout";
 import profileSheet from "@/translateSheets/profileSheet";
-import AvatarFallback from "@/components/avatarfallback";
 import Button from "@/button";
 import { logout } from "@/routes";
+import avatar from "@/routes/avatar";
 
 export default function Profile() {
-    const user = usePage<{ auth: { user: User } }>().props.auth.user;
     const { translate } = useTranslate(profileSheet);
 
     return (
         <Layout title="Perfil">
             <div className="max-w-xl mx-auto p-4 space-y-4">
                 <div className="grid place-items-center">
-                    {user.avatar
-                        ? <img className="h-28 w-28 overflow-hidden rounded-full" src={user.avatar} alt={user.name} />
-                        : <AvatarFallback className="h-28 w-28 fill-white" />
-                    }
-                    <p className="text-sm">{translate("Clique para alterar")}</p>
+                    <AvatarCropInput defaultImage={avatar.show().url} />
                 </div>
+
 
                 <div className="p-4 border rounded shadow">
                     <h2 className="font-semibold">{translate("Senha")}</h2>

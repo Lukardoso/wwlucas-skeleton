@@ -41,7 +41,7 @@ export default function TwoFactor({
     const [showSetupModal, setShowSetupModal] = useState<boolean>(false);
 
     return (
-        <Layout>
+        <Layout title="Two-Factor Authentication">
             <Head title="Two-Factor Authentication" />
             <SettingsLayout>
                 <div className="space-y-6">
