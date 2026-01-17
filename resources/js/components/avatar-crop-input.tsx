@@ -9,7 +9,7 @@ import { User } from '@/types';
 import AvatarController from '@/actions/App/Http/Controllers/AvatarController';
 import { Label } from './ui/label';
 
-export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
+export function AvatarCropInput({ defaultImage }: { defaultImage?: string|null }) {
     const user = usePage<{ auth: { user: User } }>().props.auth.user;
     const { translate } = useTranslate(profileSheet);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -152,7 +152,7 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
                     className="hidden"
                 />
                 {defaultImage
-                    ? <img src={defaultImage} alt="Default Avatar" className=" text-gray-400 object-cover" />
+                    ? <img src={defaultImage} alt="Avatar" className=" text-gray-400 object-cover" />
                     : <UserIcon className="w-20 h-20 text-gray-400" />
                 }
             </label>

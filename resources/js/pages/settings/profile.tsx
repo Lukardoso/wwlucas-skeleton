@@ -19,7 +19,7 @@ export default function Profile() {
         <Layout title="Perfil">
             <div className="max-w-xl mx-auto p-4 space-y-4">
                 <div className="grid place-items-center">
-                    <AvatarCropInput defaultImage={AvatarController.show(user.id).url} />
+                    <AvatarCropInput defaultImage={user.avatar && AvatarController.show(user.id).url} />
                 </div>
 
 
