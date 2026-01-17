@@ -18,8 +18,8 @@ Route::domain("app.$domain")->group(function () {
             return Inertia::render('webapp/home');
         })->name('webapp.test');
 
-        Route::get('/avatar', [AvatarController::class, 'show'])->name('avatar.show');
-        Route::put('/avatar', [AvatarController::class, 'update'])->name('avatar.update');
+        Route::get('/avatar/{user}', [AvatarController::class, 'show'])->name('avatar.show');
+        Route::put('/avatar/{user}', [AvatarController::class, 'update'])->name('avatar.update');
 
     });
 });

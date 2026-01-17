@@ -1,13 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
-import { User, Loader2 } from 'lucide-react';
+import { User as UserIcon, Loader2 } from 'lucide-react';
 import useTranslate from '@/hooks/useTranslate';
 import profileSheet from '@/translateSheets/profileSheet';
 import Button from '@/button';
-import { router } from '@inertiajs/react';
-import avatar from '@/routes/avatar';
+import { router, usePage } from '@inertiajs/react';
+import { User } from '@/types';
+import AvatarController from '@/actions/App/Http/Controllers/AvatarController';
+import { Label } from './ui/label';
 
 export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
+    const user = usePage<{ auth: { user: User } }>().props.auth.user;
     const { translate } = useTranslate(profileSheet);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -17,10 +20,12 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
+        const file = e.target.files?.[0];
+
+        if (file) {
             const reader = new FileReader();
             reader.addEventListener('load', () => setImageSrc(reader.result as string));
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(file);
         }
     };
 
@@ -29,6 +34,7 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
     }, []);
 
     const createCropImage = async () => {
+
         if (!imageSrc || !croppedAreaPixels) return;
         setIsLoading(true);
 
@@ -59,7 +65,7 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
                 const file = new File([blob], "avatar.jpg", { type: "image/jpeg" });
                 setFinalFile(file);
 
-                router.put(avatar.update(), { avatar: file }, { preserveState: false });
+                router.put(AvatarController.update(user.id), { avatar: file }, { preserveState: false });
             }
             setIsLoading(false);
         }, 'image/jpeg');
@@ -93,23 +99,38 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
     if (imageSrc) {
         return (
             <div className="flex flex-col items-center space-y-6">
-                <div className="relative w-80 h-80 shadow-xl">
+                <div className="relative w-80 h-80 shadow-lg">
                     <Cropper
                         image={imageSrc}
                         crop={crop}
                         zoom={zoom}
                         aspect={1}
                         cropShape="round"
-                        showGrid={false}
                         onCropChange={setCrop}
                         onZoomChange={setZoom}
                         onCropComplete={onCropComplete}
                     />
                 </div>
+
+                <div>
+                    <Label className='flex gap-4 items-center px-4 py-2 rounded border shadow-lg'>
+                        Zoom:
+                        <input
+                            type="range"
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            value={zoom}
+                            onChange={(e) => setZoom(parseFloat(e.target.value))}
+                            className='accent-brand'
+                        />
+                    </Label>
+                </div>
+
                 <Button
                     onClick={createCropImage}
                     disabled={isLoading}
-                    className='w-full'
+                    className='w-full shadow-lg'
                 >
                     {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : translate("Salvar")}
                 </Button>
@@ -132,7 +153,7 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string }) {
                 />
                 {defaultImage
                     ? <img src={defaultImage} alt="Default Avatar" className=" text-gray-400 object-cover" />
-                    : <User className="w-20 h-20 text-gray-400" />
+                    : <UserIcon className="w-20 h-20 text-gray-400" />
                 }
             </label>
 

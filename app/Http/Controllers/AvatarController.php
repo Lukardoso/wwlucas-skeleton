@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
-    public function show(Request $request)
+    public function show(User $user)
     {
-        return Storage::response($request->user()->avatar);
+        abort_if($user->id !== Auth::id(), 403);
+
+        return Storage::response(
+            $user->avatar,
+        );
     }
 
     public function update(Request $request)
     {
-        if (! $request->user()) {
-            return to_route('login');
-        }
-
         $request->validate([
             'avatar' => ['required', 'image'],
         ]);

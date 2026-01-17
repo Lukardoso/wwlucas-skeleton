@@ -9,20 +9,21 @@ import Layout from "@/layouts/webapp/layout";
 import profileSheet from "@/translateSheets/profileSheet";
 import Button from "@/button";
 import { logout } from "@/routes";
-import avatar from "@/routes/avatar";
+import AvatarController from "@/actions/App/Http/Controllers/AvatarController";
 
 export default function Profile() {
     const { translate } = useTranslate(profileSheet);
+    const user = usePage<{ auth: { user: User } }>().props.auth.user;
 
     return (
         <Layout title="Perfil">
             <div className="max-w-xl mx-auto p-4 space-y-4">
                 <div className="grid place-items-center">
-                    <AvatarCropInput defaultImage={avatar.show().url} />
+                    <AvatarCropInput defaultImage={AvatarController.show(user.id).url} />
                 </div>
 
 
-                <div className="p-4 border rounded shadow">
+                <div className="p-4 border rounded shadow-lg">
                     <h2 className="font-semibold">{translate("Senha")}</h2>
 
                     <Form

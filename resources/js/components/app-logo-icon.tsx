@@ -13,8 +13,8 @@ export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
             <path d="M566.65 70.13L593.73 53.8801L577.34 40.42C576.86 40 576.68 39.3401 576.88 38.7401L579.07 32.17C579.43 31.1 580.75 30.74 581.6 31.48L601.85 48.32C602.89 49.23 603.48 50.53 603.48 51.91V56.4001C603.48 58.0501 602.64 59.5701 601.23 60.4501L565.09 82.38C563.84 83.14 562.32 81.9301 562.78 80.5401L565.96 71C566.08 70.64 566.32 70.3401 566.64 70.1501L566.65 70.13Z" className="fill-[#202035] dark:fill-white" />
             <defs>
                 <linearGradient id="paint0_linear_1_175" x1="158.79" y1="25.58" x2="158.79" y2="92.26" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#00E3C0" />
-                    <stop offset="1" stop-color="#595EBD" />
+                    <stop stopColor="#00E3C0" />
+                    <stop offset="1" stopColor="#595EBD" />
                 </linearGradient>
             </defs>
         </svg>
