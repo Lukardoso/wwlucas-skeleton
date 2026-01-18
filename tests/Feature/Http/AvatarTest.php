@@ -17,3 +17,22 @@ test('avatar can be updated', function () {
 
     Storage::disk('local')->assertExists($user->avatar);
 });
+
+test("avatar can be retrieved by route", function () {
+    Storage::fake('local');
+    $file = Storage::putFile('avatars', UploadedFile::fake()->image('avatar.jpg'));
+
+    $user = User::factory()->create([
+        'avatar' => $file,
+    ]);
+
+    $response = $this->actingAs($user)->get(route('avatar.show', $user->id));
+
+    $filename = basename($file);
+
+    $response
+        ->assertStatus(200)
+        ->assertHeader('content-type', 'image/jpeg')
+        ->assertHeader('content-disposition', 'inline; filename='."{$filename}");
+
+});
