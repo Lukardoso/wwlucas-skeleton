@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AvatarController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

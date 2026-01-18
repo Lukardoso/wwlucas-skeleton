@@ -15,7 +15,7 @@ class AvatarController extends Controller
     {
         abort_if($user->id !== Auth::id(), 403);
 
-        abort_if(! $user->avatar, 404, "Avatar not found.");
+        abort_if(! $user->avatar, 404, 'Avatar not found.');
 
         return Storage::response(
             $user->avatar,
