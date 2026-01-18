@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
 import SettingsLayout from '@/layouts/settings/layout';
 import Layout from '@/layouts/webapp/layout';
-import { disable, enable, show } from '@/routes/two-factor';
-import { type BreadcrumbItem } from '@/types';
+import { disable, enable } from '@/routes/two-factor';
 import { Form, Head } from '@inertiajs/react';
 import { ShieldBan, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
@@ -16,13 +15,6 @@ interface TwoFactorProps {
     requiresConfirmation?: boolean;
     twoFactorEnabled?: boolean;
 }
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Two-Factor Authentication',
-        href: show.url(),
-    },
-];
 
 export default function TwoFactor({
     requiresConfirmation = false,

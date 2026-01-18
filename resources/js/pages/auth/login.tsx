@@ -18,7 +18,7 @@ interface LoginProps {
     canRegister: boolean;
 }
 
-export default function Login({ status, canResetPassword, canRegister, }: LoginProps) {
+export default function Login({ status, canResetPassword }: LoginProps) {
     const {translate} = useTranslate(loginSheet);
 
     return (
@@ -97,15 +97,6 @@ export default function Login({ status, canResetPassword, canRegister, }: LoginP
                                 {translate("Entrar")}
                             </Button>
                         </div>
-
-                        {/* {canRegister && (
-                            <div className="text-center text-sm text-muted-foreground">
-                                Don't have an account?{' '}
-                                <TextLink href={register()} tabIndex={5}>
-                                    Sign up
-                                </TextLink>
-                            </div>
-                        )} */}
                     </>
                 )}
             </Form>

@@ -68,7 +68,7 @@ function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (sub
         const others = menus.slice(4);
 
         const compacted = [...menus.slice(0, 4), {
-            title: "Outros",
+            title: translate("Outros"),
             permission: 'others',
             icon: '/icons/menu/others-circle.svg',
             selected_icon: '/icons/menu/selected-others-circle.svg',

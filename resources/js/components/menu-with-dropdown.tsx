@@ -15,7 +15,7 @@ export default function MenuWithDropDown({ menu }: { menu: MenuItem }) {
         if (location === menu.href) {
             setSelectedMenu(menu.title);
         }
-    }, [])
+    }, [menu, setSelectedMenu])
 
     const handleClick = () => {
         setSelectedMenu(menu.title);

@@ -3,7 +3,6 @@ import ConfigContext from "@/pages/webapp/contexts/config-context";
 import AppLogoIcon from "@/components/app-logo-icon";
 import MenuWithDropDown from "@/components/menu-with-dropdown";
 import { MenuItem } from "@/types/menu-items";
-import { usePage } from "@inertiajs/react";
 import ProfileMenu from "@/components/profile-menu";
 
 export default function DesktopLayout({ children, title }: { children: React.ReactNode, title: string }) {

@@ -16,7 +16,12 @@ export default function Layout({ children, title }: { children: React.ReactNode,
     const Layout = deviceWidth > 1000 ? DesktopLayout : MobileLayout;
 
     return (
-        <ConfigContext.Provider value={{menus: allowedMenus, permissions: permissions, selectedMenu: selectedMenu, setSelectedMenu: setSelectedMenu }}>
+        <ConfigContext.Provider value={{
+            menus: allowedMenus,
+            permissions: permissions,
+            selectedMenu: selectedMenu,
+            setSelectedMenu: setSelectedMenu,
+        }}>
 
             <div className="min-h-screen bg-neutral-100">
                 <Head title={title} />

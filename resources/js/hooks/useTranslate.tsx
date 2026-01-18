@@ -1,31 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-type TranslateSheet = {
+type tSheet = {
     [key: string]: { [key: string]: string }
 }
 
-export default function useTranslate(tSheet: TranslateSheet, forceLang?: string) {
-    const translateSheet = tSheet;
-    const [preferedLang, setPreferedLang] = useState(localStorage.getItem('lang') || navigator.language.substring(0, 2));
+export default function useTranslate(tSheet: tSheet) {
+    const [preferedLang, setPreferedLang] = useState(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
 
-    useEffect(() => {
-        if (forceLang) {
-            setPreferedLang(forceLang);
-
-        } else {
-            const urlParams = new URLSearchParams(window.location.search);
-            const langParam = urlParams.get('lang');
-
-            if (langParam && langParam !== preferedLang) {
-                setPreferedLang(langParam);
-            }
-        }
-
-    }, [])
+        return langParam ?? navigator.language.substring(0, 2);
+    });
 
     function handlePreferedLang(lang: string) {
         setPreferedLang(() => {
-            localStorage.setItem('lang', lang);
             window.location.search = `?lang=${lang}`;
             return lang;
         });
@@ -33,13 +21,13 @@ export default function useTranslate(tSheet: TranslateSheet, forceLang?: string)
 
     function translate(text: string): string {
 
-        if (!translateSheet) throw 'No translate sheet.';
+        if (!tSheet) throw 'No translate sheet.';
 
-        if (!translateSheet[text] || !translateSheet[text][preferedLang]) {
+        if (!tSheet[text] || !tSheet[text][preferedLang]) {
             return text;
         }
 
-        return translateSheet[text][preferedLang];
+        return tSheet[text][preferedLang];
     }
 
     return { translate, handlePreferedLang, preferedLang }
