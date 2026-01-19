@@ -1,9 +1,11 @@
 import { router } from "@inertiajs/react"
 import Arrow from "./arrow"
+import OthersMenuItem from "./icons/others-menu-icon";
+import { IconComponent } from "@/types/base-icon";
 
 interface MenuInLineBaseProps {
     title: string;
-    icon: string;
+    icon: IconComponent;
     className?: string;
 }
 
@@ -20,6 +22,8 @@ interface MenuInLineWithOnClickProps extends MenuInLineBaseProps {
 type MenuInLineProps = MenuInLineWithHrefProps | MenuInLineWithOnClickProps
 
 export default function MenuInLine({ title, icon, href, onClick, className }: MenuInLineProps) {
+    const Icon = icon;
+
     const handleClick = () => {
         if (href) {
             router.visit(href, { preserveState: true });
@@ -30,12 +34,12 @@ export default function MenuInLine({ title, icon, href, onClick, className }: Me
     }
 
     return (
-        <div key={title} onClick={handleClick} className={`flex items-center gap-4 cursor-pointer ${className}`}>
-            <img src={icon} alt={title} className="h-6 w-6" />
+        <div key={title} onClick={handleClick} className={`flex items-center gap-4 cursor-pointer text-primary bg-foreground ${className}`}>
+            <Icon />
 
-            <div className="py-2 flex gap-4 grow justify-between items-center border-b">
+            <div className="py-2 flex gap-4 grow justify-between items-center border-b border-muted">
                 <p>{title}</p>
-                <Arrow />
+                <Arrow className="stroke-primary" />
             </div>
         </div>
     )

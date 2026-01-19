@@ -7,6 +7,7 @@ import MenuInLine from "@/components/menu-inline";
 import { MenuItem } from "@/types/menu-items";
 import useTranslate from "@/hooks/useTranslate";
 import menuSheet from "@/translateSheets/menuSheet";
+import OthersMenuItem from "@/components/icons/others-menu-icon";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
     const [submenus, setSubmenus] = useState<MenuItem[]>([]);
@@ -27,10 +28,10 @@ export default function MobileLayout({ children, title }: { children: React.Reac
 
             <div className="pb-20 sm:pb-32 overflow-auto">
                 {submenus.length > 0 ? (
-                    <div className="sm:max-w-lg mx-4 mt-8 sm:mx-auto bg-white rounded shadow overflow-hidden animate-slide-left">
+                    <div className="sm:max-w-lg mx-4 mt-8 sm:mx-auto rounded shadow overflow-hidden animate-slide-left">
                         {submenus.map((submenu) => (
                             <MenuInLine title={submenu.title} icon={submenu.icon} onClick={() => handleMenu(submenu)}
-                                className="px-4 pt-2 animate-slide-left active:bg-neutral-200" />
+                                className="px-4 pt-2 animate-slide-left active:opacity-70" />
                         ))}
                     </div>
                 ) : children}
@@ -70,8 +71,7 @@ function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (sub
         const compacted = [...menus.slice(0, 4), {
             title: translate("Outros"),
             permission: 'others',
-            icon: '/icons/menu/others-circle.svg',
-            selected_icon: '/icons/menu/selected-others-circle.svg',
+            icon: OthersMenuItem,
             submenus: others
         } as MenuItem]
 
@@ -80,7 +80,7 @@ function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (sub
 
     return (
         <div className="fixed bottom-0 w-full flex justify-center pb-2 sm:pb-8 backdrop-blur-[0.07rem]">
-            <div className="w-[95vw] sm:w-[80vw] px-4 py-2 flex justify-evenly border shadow rounded-full bg-white text-black">
+            <div className="w-[95vw] sm:w-[80vw] px-4 py-2 flex justify-evenly border dark:border-neutral-600 shadow rounded-full bg-foreground text-primary">
                 {
                     compactMenus().map((menu: MenuItem) => (
                         <MobileMenuIcon key={menu.permission} menu={menu} handleMenu={handleMenu} />

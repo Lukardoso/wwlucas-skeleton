@@ -3,11 +3,16 @@ import { useContext, useEffect } from "react";
 import Arrow from "./arrow";
 import { MenuItem } from "@/types/menu-items";
 import ConfigContext from "@/pages/webapp/contexts/config-context";
+import { IconComponent } from "@/types/base-icon";
 
 export default function MenuWithDropDown({ menu }: { menu: MenuItem }) {
     const { selectedMenu, setSelectedMenu } = useContext(ConfigContext);
+
     const open = selectedMenu === menu.title;
+
     const hasSubmenu = menu.submenus && menu.submenus.length > 0;
+
+    const Icon: IconComponent = menu.icon;
 
     useEffect(() => {
         const location = window.location.pathname;
@@ -28,7 +33,9 @@ export default function MenuWithDropDown({ menu }: { menu: MenuItem }) {
     return (
         <div>
             <div onClick={handleClick} className="flex items-center gap-4 cursor-pointer select-none">
-                <img src={selectedMenu === menu.title ? menu.selected_icon : menu.icon} alt={menu.title} className="h-6 w-6" />
+                <div>
+                    <Icon selected={selectedMenu === menu.title} className="stroke-white" />
+                </div>
 
                 <div className="group py-2 flex gap-4 grow justify-between items-center border-b hover:opacity-70 transition-all">
                     <p

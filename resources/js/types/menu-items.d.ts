@@ -1,8 +1,10 @@
+import FallbackMenuIcon from "@/components/icons/fallback-menu-icon";
+import { ComponentType } from "react";
+
 interface BaseMenuItem {
     title: string;
     permission: string;
-    icon: string;
-    selected_icon?: string;
+    icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 interface MenuItemWithHref extends BaseMenuItem {

@@ -3,10 +3,12 @@ import { useContext, useEffect } from "react";
 import useTranslate from "@/hooks/useTranslate";
 import menuSheet from "@/translateSheets/menuSheet";
 import ConfigContext from "@/pages/webapp/contexts/config-context";
+import { IconComponent } from "@/types/base-icon";
 
 export default function MobileMenuIcon({ menu, handleMenu }: { menu: MenuItem, handleMenu: (submenu: MenuItem) => void }) {
     const { selectedMenu, setSelectedMenu } = useContext(ConfigContext);
     const { translate } = useTranslate(menuSheet);
+    const Icon: IconComponent = menu.icon;
 
     useEffect(() => {
         const location = window.location.pathname;
@@ -21,19 +23,11 @@ export default function MobileMenuIcon({ menu, handleMenu }: { menu: MenuItem, h
         handleMenu(menu);
     }
 
-    const handleIcon = () => {
-        if (menu.selected_icon && selectedMenu === menu.title) {
-            return menu.selected_icon;
-        }
-
-        return menu.icon;
-    }
-
     return (
         <button onClick={() => handleClick(menu)} className="grid place-items-center text-center">
-            <img src={handleIcon()} alt={`${menu.title}-icon`} className="h-6 w-6" />
+            <Icon selected={selectedMenu === menu.title} />
 
-            <p className={`max-w-[8ch] text-xs sm:text-base overflow-hidden text-nowrap text-ellipsis ${selectedMenu === menu.title ? "text-brand font-semibold" : ""}`}>
+            <p className={`text-xs sm:text-base overflow-hidden text-nowrap text-ellipsis ${selectedMenu === menu.title ? "text-brand font-semibold" : ""}`}>
                 {translate(menu.title)}
             </p>
         </button>
