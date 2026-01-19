@@ -23,7 +23,7 @@ export default function Layout({ children, title }: { children: React.ReactNode,
             setSelectedMenu: setSelectedMenu,
         }}>
 
-            <div className="min-h-screen bg-neutral-100">
+            <div className="min-h-screen bg-background text-primary">
                 <Head title={title} />
 
                 <Layout title={title}>{children}</Layout>

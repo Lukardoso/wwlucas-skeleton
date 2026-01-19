@@ -7,6 +7,7 @@ import { User } from "@/types";
 
 export default function ProfileMenu({ inline = false }: { inline?: boolean }) {
     const user = usePage<{ auth: { user: User } }>().props.auth.user;
+    const alreadyOnProfilePage = usePage().url === profile.edit().url;
     const splittedName = user.name.split(' ');
     const username = splittedName.length > 1 ? `${splittedName[0]} ${splittedName.at(-1)}` : user.name;
 
@@ -19,7 +20,7 @@ export default function ProfileMenu({ inline = false }: { inline?: boolean }) {
 
             <p className="capitalize text-xs lg:text-base flex-1">{username}</p>
 
-            {inline && <Arrow />}
+            {inline && <Arrow className={alreadyOnProfilePage ? 'fill-brand' : 'fill-primary'} />}
         </Link>
     );
 }

@@ -36,7 +36,7 @@ export default function MenuWithDropDown({ menu }: { menu: MenuItem }) {
                         {menu.title}
                     </p>
 
-                    <Arrow className={`${open ? "fill-brand" : ""} ${open && hasSubmenu ? "rotate-90" : ""}`} />
+                    <Arrow className={`${open ? "fill-brand" : "fill-primary"} ${open && hasSubmenu ? "rotate-90" : ""}`} />
                 </div>
             </div>
 

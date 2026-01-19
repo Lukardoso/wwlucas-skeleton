@@ -10,6 +10,7 @@ import profileSheet from "@/translateSheets/profileSheet";
 import Button from "@/button";
 import { logout } from "@/routes";
 import AvatarController from "@/actions/App/Http/Controllers/AvatarController";
+import PasswordInput from "@/components/PasswordInput";
 
 export default function Profile() {
     const { translate } = useTranslate(profileSheet);
@@ -23,7 +24,7 @@ export default function Profile() {
                 </div>
 
 
-                <div className="p-4 border rounded shadow-lg">
+                <div className="p-4 border rounded shadow-lg bg-foreground">
                     <h2 className="font-semibold">{translate("Senha")}</h2>
 
                     <Form
@@ -34,7 +35,7 @@ export default function Profile() {
                         {({ processing, errors, wasSuccessful }) => (
                             <>
                                 <Label>{translate("Atual")}:
-                                    <Input
+                                    <PasswordInput
                                         required
                                         name="current_password"
                                         id="current_password"
@@ -44,7 +45,7 @@ export default function Profile() {
 
                                 <div className="mt-4">
                                     <Label>{translate("Nova")}:
-                                        <Input
+                                        <PasswordInput
                                             required
                                             name="password"
                                             id="password"
@@ -54,7 +55,7 @@ export default function Profile() {
                                     </Label>
 
                                     <Label>{translate("Confirme a nova senha")}:
-                                        <Input
+                                        <PasswordInput
                                             required
                                             name="password_confirmation"
                                             id="password_confirmation"
@@ -64,11 +65,11 @@ export default function Profile() {
                                     </Label>
                                 </div>
 
-                                {errors.current_password && <div className="mt-4 text-sm text-alert">{translate(errors.current_password)}</div>}
-
-                                {(errors.password && !errors.current_password) && <div className="mt-4 text-sm text-alert">{translate(errors.password)}</div>}
-
-                                {wasSuccessful && <div>{translate("Senha alterada com sucesso")}</div>}
+                                <div className="my-2 text-sm">
+                                    {errors.current_password && <div className="text-alert">{translate(errors.current_password)}</div>}
+                                    {errors.password && <div className="text-alert">{translate(errors.password)}</div>}
+                                    {wasSuccessful && <div className="text-success">{translate("Senha alterada com sucesso")}</div>}
+                                </div>
 
                                 <div className="grid gap-2">
                                     <Button disabled={processing} type="submit" className="mt-4">{translate("Mudar senha")}</Button>
@@ -79,7 +80,7 @@ export default function Profile() {
 
                     <Link
                         href={logout()}
-                        className="w-full mt-4 px-2 py-1 border border-destructive rounded text-sm text-destructive hover:opacity-80 cursor-pointer">
+                        className="w-full mt-4 px-2 py-1 border border-destructive rounded text-sm text-destructive-foreground bg-destructive hover:opacity-80 cursor-pointer">
                         {translate("Sair do aplicativo")}
                     </Link>
                 </div>

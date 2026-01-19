@@ -1,4 +1,5 @@
 import InputError from '@/components/input-error';
+import PasswordInput from '@/components/PasswordInput';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -19,7 +20,7 @@ interface LoginProps {
 }
 
 export default function Login({ status, canResetPassword }: LoginProps) {
-    const {translate} = useTranslate(loginSheet);
+    const { translate } = useTranslate(loginSheet);
 
     return (
         <AuthLayout
@@ -44,9 +45,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     name="email"
                                     required
                                     autoFocus
-                                    tabIndex={1}
+                                    tabIndex={0}
                                     autoComplete="email"
-                                    placeholder="email@example.com"
+                                    placeholder={translate("email@exemplo.com")}
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -57,23 +58,24 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     {canResetPassword && (
                                         <TextLink
                                             href={request()}
-                                            className="ml-auto text-sm"
-                                            tabIndex={5}
+                                            className="ml-auto text-sm text-primary"
+                                            tabIndex={0}
                                         >
                                             {translate("Esqueceu sua senha?")}
                                         </TextLink>
                                     )}
                                 </div>
-                                <Input
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    required
-                                    tabIndex={2}
-                                    autoComplete="current-password"
-                                    placeholder="Password"
-                                />
-                                <InputError message={errors.password} />
+
+                                <div>
+                                    <PasswordInput
+                                        id="password"
+                                        name="password"
+                                        required
+                                        autoComplete="current-password"
+                                        placeholder={translate("Senha")}
+                                    />
+                                    <InputError message={errors.password} />
+                                </div>
                             </div>
 
                             <div className="flex items-center space-x-3">
@@ -81,7 +83,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     id="remember"
                                     name="remember"
                                     className="dark:bg-white"
-                                    tabIndex={3}
+                                    tabIndex={0}
                                 />
                                 <Label htmlFor="remember">{translate("Permanecer conectado")}</Label>
                             </div>
@@ -89,7 +91,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             <Button
                                 type="submit"
                                 className="mt-4 w-full"
-                                tabIndex={4}
+                                tabIndex={0}
                                 disabled={processing}
                                 data-test="login-button"
                             >
