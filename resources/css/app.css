@@ -64,6 +64,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     --color-brand: var(--brand);
+    --color-brand-counter: var(--brand-counter);
 
     --animate-slide-left: slide-left 0.2s ease-in-out;
     --animate-slide-up: slide-up 0.2s ease-in-out;
@@ -71,6 +72,7 @@
 
 :root {
     --brand: oklch(57.376% 0.11975 257.188);
+    --brand-counter: oklch(97% 0.00011 271.152);
     --background: oklch(97% 0.00011 271.152);
     --foreground: oklch(98% 0.00011 271.152);
     --card: oklch(1 0 0);
