@@ -66,15 +66,15 @@ export function SortableTable<T extends Record<string, unknown>>({
     }
 
     return (
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <div className="overflow-x-auto rounded-md border">
             <table className="min-w-full border-collapse text-sm">
-                <thead className="bg-gray-50">
+                <thead className="bg-foreground">
                     <tr>
                         {columns.map(col => (
                             <th
                                 key={String(col.key)}
                                 onClick={() => handleSort(col.key)}
-                                className="capitalize cursor-pointer select-none border-b border-gray-200 px-4 py-3 text-left font-medium text-gray-700 hover:bg-gray-100"
+                                className="capitalize cursor-pointer select-none border-b px-4 py-3 text-left font-medium hover:bg-neutral-200 dark:hover:bg-neutral-500"
                             >
                                 {String(col.key)}
                                 {sortKey === col.key && (
@@ -91,12 +91,12 @@ export function SortableTable<T extends Record<string, unknown>>({
                     {sortedData.map((row, i) => (
                         <tr
                             key={i}
-                            className="odd:bg-white even:bg-gray-50 hover:bg-gray-100"
+                            className="odd:bg-white dark:odd:bg-neutral-600 even:bg-gray-50 dark:even:bg-neutral-500 hover:bg-gray-100 dark:hover:bg-neutral-700"
                         >
                             {columns.map(col => (
                                 <td
                                     key={String(col.key)}
-                                    className="text-nowrap border-b border-gray-200 px-4 py-3 text-gray-800"
+                                    className="text-nowrap border-b px-4 py-3"
                                 >
                                     {col.type === 'date'
                                         ? formatDate(String(row[col.key]))

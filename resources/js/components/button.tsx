@@ -12,9 +12,9 @@ export default function Button({ children, className, variant = "primary", ...pr
             case "primary":
                 return "bg-brand text-brand-counter";
             case "secondary":
-                return "bg-transparent text-primary border border-primary/30 hover:bg-brand/10 disabled:bg-transparent";
+                return "bg-foreground text-primary border border-primary/30 hover:bg-brand/10 disabled:bg-transparent";
             case "destructive":
-                return "bg-transparent text-destructive border border-destructive/30 hover:bg-destructive/10 disabled:bg-transparent";
+                return "bg-destructive text-destructive-foreground border border-transparent hover:opacity-90";
             default:
                 return "";
         }

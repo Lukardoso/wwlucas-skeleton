@@ -1,12 +1,22 @@
 import Button from "@/components/button";
+import HintOnHover from "@/components/hint-on-hover";
+import Popover from "@/components/popover";
+import Popup from "@/components/popup";
 import { SortableTable } from "@/components/sortable-table";
 import Layout from "@/layouts/webapp/layout";
+import { useState } from "react";
 
 export default function Home() {
+    const [open, setOpen] = useState(false);
+
+    const handleConfirm = () => {
+        alert('ação confirmada');
+    };
+
     const customers = [
         {
             id: 1,
-            name: "John Doe",
+            name: "John Doe Long Name",
             email: "2A2Gw@example.com",
             phone: "457",
             address: "123 Main St, Anytown, USA",
@@ -44,9 +54,9 @@ export default function Home() {
 
     return (
         <Layout title="Test Page">
-            <div className="lg:p-12 space-y-4">
+            <div className="p-4 space-y-4">
                 <div className="space-x-2">
-                    <div className="p-4 space-x-2 border">
+                    <div className="flex flex-wrap gap-2 p-4 border">
                         <Button>
                             Button
                         </Button>
@@ -65,32 +75,65 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="ml-4">
+                <div className="max-w-6xl">
                     <SortableTable data={customers} columns={[
                         { key: 'name', type: 'string' },
                         { key: 'email', type: 'string' },
                         { key: 'phone', type: 'number' },
                         { key: 'address', type: 'string' },
                         { key: 'birthday', type: 'date' },
+                        { key: 'country', type: 'string' },
+                        { key: 'state', type: 'string' },
+                        { key: 'city', type: 'string' },
+                        { key: 'zip_code', type: 'string' },
+                        { key: 'id', type: 'number' },
                     ]} />
                 </div>
 
-                <div>
-                    popup
+                {/* Popup with confirmation */}
+                <div className="mt-4">
+                    <Button onClick={() => setOpen(true)}>
+                        Abrir Popup
+                    </Button>
+
+                    <Popup
+                        open={open}
+                        onClose={() => setOpen(false)}
+                        title="The Popup"
+                        action={handleConfirm}
+                    >
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam provident laborum ea magnam nobis consequuntur?
+                    </Popup>
                 </div>
 
                 <div>
-                    dialog
+                    <Popover
+                        trigger={
+                            <p className="underline cursor-pointer text-brand">
+                                Abrir Popover
+                            </p>
+                        }
+                    >
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, libero omnis corporis unde doloremque laudantium velit. Maiores repudiandae aliquam deleniti unde nobis hic. Doloremque, facilis pariatur sequi aliquid expedita recusandae asperiores dolorem, vero consectetur deserunt autem eveniet obcaecati tenetur qui nesciunt a, reprehenderit et cupiditate. Saepe eum beatae doloremque ea, quam voluptatum incidunt illum reiciendis esse in, corporis soluta, repudiandae repellat? Amet fugit incidunt quo quisquam odit corporis corrupti accusamus repudiandae, tempore cupiditate rem, veniam eligendi quam. Magni aperiam sequi harum ex odio, doloribus optio praesentium nisi nostrum quam ea, ipsum dolorum pariatur, atque deleniti incidunt possimus dolorem explicabo numquam.
+                    </Popover>
+                </div>
+
+                <div>
+                    <HintOnHover
+                        trigger={
+                            <p className="underline cursor-pointer text-brand">
+                                Hint on hover
+                            </p>
+                        }
+                    >
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, alias?
+                    </HintOnHover>
                 </div>
 
                 <div>
                     dropdown
                 </div>
-
-                <div>
-                    confirmation popup
-                </div>
             </div>
-        </Layout>
+        </Layout >
     );
 }
