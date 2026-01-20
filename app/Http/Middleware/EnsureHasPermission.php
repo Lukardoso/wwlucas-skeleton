@@ -19,10 +19,10 @@ class EnsureHasPermission
     {
         $user = $request->user();
         $routeName = $request->route()?->getName();
-
+        
         throw_unless($routeName, new LogicException("Route must have a name."));
 
-        if (! isset($user->role) || ! $this->hasPermission($user, $routeName)) {
+        if (empty($user->role) || ! $this->hasPermission($user, $routeName)) {
             abort(403, 'User dont have permissions');
         }
 
@@ -31,7 +31,10 @@ class EnsureHasPermission
 
     protected function hasPermission(User $user, string $permission): bool
     {
-        $permissions = $user->role->permissions;
-        return $permissions->contains('title', $permission);
+        if (collect($user->role)->contains('title', 'admin')) return true;
+
+        $permissions = $user->role?->permissions;
+
+        return empty($permissions) ? false : $permissions->contains('title', $permission);
     }
 }
