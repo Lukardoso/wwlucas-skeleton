@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import HintOnHover from "@/components/hint-on-hover";
 import Popover from "@/components/popover";
 import Popup from "@/components/popup";
+import Select from "@/components/select";
 import { SortableTable } from "@/components/sortable-table";
 import Layout from "@/layouts/webapp/layout";
 import { useState } from "react";
@@ -118,8 +119,19 @@ export default function Home() {
                     </Popover>
                 </div>
 
-                <div>
+                <div className="flex justify-between items-center">
                     <HintOnHover
+                        className="w-md"
+                        directionX="left"
+                        directionY="bottom"
+                        trigger={<p className="underline cursor-pointer text-brand"> Hint on hover </p>}
+                    >
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo dolorum ad pariatur esse fugiat ut temporibus nisi hic alias inventore!
+                    </HintOnHover>
+
+                    <HintOnHover
+                        directionX="right"
+                        directionY="top"
                         trigger={
                             <p className="underline cursor-pointer text-brand">
                                 Hint on hover
@@ -131,7 +143,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                    dropdown
+                    <Select label="Select an option" name="seLect" options={["Option 1", "Option 2", "Option 3"]} />
                 </div>
             </div>
         </Layout >

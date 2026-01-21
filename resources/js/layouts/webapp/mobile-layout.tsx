@@ -79,7 +79,7 @@ function BottomMenu({ menus, handleMenu }: { menus: MenuItem[], handleMenu: (sub
     }
 
     return (
-        <div className="fixed bottom-0 w-full flex justify-center pb-2 sm:pb-8 backdrop-blur-[0.07rem]">
+        <div className="fixed z-50 bottom-0 w-full flex justify-center pb-2 sm:pb-8 backdrop-blur-[0.07rem]">
             <div className="w-[95vw] sm:w-[80vw] px-4 py-2 flex justify-evenly border dark:border-neutral-600 shadow rounded-full bg-foreground text-primary">
                 {
                     compactMenus().map((menu: MenuItem) => (

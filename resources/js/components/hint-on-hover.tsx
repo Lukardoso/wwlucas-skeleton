@@ -1,11 +1,15 @@
 import { LucideX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 type PopoverProps = {
     children: React.ReactNode;
     trigger: React.ReactNode;
+    directionX?: "left" | "right";
+    directionY?: "top" | "bottom";
+    className?: string
 }
-export default function HintOnHover({ children, trigger }: PopoverProps) {
+export default function HintOnHover({ children, trigger, directionX = "left", directionY = "bottom", className }: PopoverProps) {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
@@ -23,10 +27,13 @@ export default function HintOnHover({ children, trigger }: PopoverProps) {
             </button>
 
             <div
-                className={
-                    `group-hover:visible invisible absolute text-sm p-4 rounded shadow-xl space-y-4 bg-foreground
-                    ${show ? "visible" : "invisible"}`
-                }
+                className={twMerge(
+                    `min-w-xs group-hover:visible invisible absolute z-10 text-sm p-4 rounded shadow-xl space-y-4 bg-foreground 
+                    ${directionX === "left" ? "left-0" : "right-0"}
+                    ${directionY === "top" ? "bottom-6" : "top-6"}
+                    ${show ? "visible" : "invisible"}`,
+                    className
+                )}
             >
                 <div>{children}</div>
             </div>

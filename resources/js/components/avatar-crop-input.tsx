@@ -3,7 +3,7 @@ import Cropper, { Area } from 'react-easy-crop';
 import { User as UserIcon, Loader2 } from 'lucide-react';
 import useTranslate from '@/hooks/useTranslate';
 import profileSheet from '@/translateSheets/profileSheet';
-import Button from '@/button';
+import Button from '@/components/button';
 import { router, usePage } from '@inertiajs/react';
 import { User } from '@/types';
 import AvatarController from '@/actions/App/Http/Controllers/AvatarController';

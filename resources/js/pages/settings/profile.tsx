@@ -1,16 +1,15 @@
 import { Form, Link, usePage } from "@inertiajs/react";
 import PasswordController from "@/actions/App/Http/Controllers/Settings/PasswordController";
 import { User } from "@/types";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AvatarCropInput } from '@/components/avatar-crop-input';
 import useTranslate from "@/hooks/useTranslate";
 import Layout from "@/layouts/webapp/layout";
 import profileSheet from "@/translateSheets/profileSheet";
-import Button from "@/button";
 import { logout } from "@/routes";
 import AvatarController from "@/actions/App/Http/Controllers/AvatarController";
 import PasswordInput from "@/components/PasswordInput";
+import Button from "@/components/button";
 
 export default function Profile() {
     const { translate } = useTranslate(profileSheet);
@@ -80,7 +79,7 @@ export default function Profile() {
 
                     <Link
                         href={logout()}
-                        className="w-full mt-4 px-2 py-1 border border-destructive rounded text-sm text-destructive-foreground bg-destructive hover:opacity-80 cursor-pointer">
+                        className="w-full mt-6 px-2 py-1 border-t text-sm text-destructive hover:opacity-80 cursor-pointer">
                         {translate("Sair do aplicativo")}
                     </Link>
                 </div>
