@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AvatarController;
+use App\Http\Middleware\EnsureHasPermission;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -9,13 +10,15 @@ $domain = str_replace('http://', '', config('app.url'));
 Route::domain("app.$domain")->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
 
-        Route::get('/', function () {
-            return Inertia::render('webapp/home');
-        })->name('webapp.home');
+        Route::middleware(EnsureHasPermission::class)->group(function () {
+            Route::get('/', function () {
+                return Inertia::render('webapp/home');
+            })->name('webapp.home');
 
-        Route::get('/test', function () {
-            return Inertia::render('webapp/home');
-        })->name('webapp.test');
+            Route::get('/admin', function () {
+                return Inertia::render('webapp/admin');
+            })->name('webapp.test');
+        });
 
         Route::get('/avatar/{user}', [AvatarController::class, 'show'])->name('avatar.show');
         Route::put('/avatar/{user}', [AvatarController::class, 'update'])->name('avatar.update');

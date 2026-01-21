@@ -4,13 +4,13 @@ import { MenuItem } from "@/types/menu-items";
 const menus: MenuItem[] = [
     {
         title: "Início",
-        permission: "home",
+        permission: "webapp.home",
         href: "/",
         icon: FallbackMenuIcon,
     },
     {
         title: "Configurações",
-        permission: "configurations",
+        permission: "webapp.admin",
         icon: FallbackMenuIcon,
         submenus: [
             {

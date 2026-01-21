@@ -5,6 +5,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Inertia\Testing\AssertableInertia;
 use Tests\TestCase;
 
 beforeEach(function () {
@@ -72,3 +73,29 @@ it("throw a logic exception if route does'nt have a name", function () {
 
     $this->actingAs($user)->get('/no-name');
 })->throws(LogicException::class, 'Route must have a name.');
+
+test('permissions is returned by Inertia response', function () {
+    /** @var TestCase $this */
+    $appUrl = 'http://app.localhost/';
+
+    $commomRole = Role::create(['title' => 'commom']);
+    $permission = Permission::create(['title' => 'webapp.home']);
+
+    $commomRole->permissions()->attach([$permission->id]);
+
+    $commomUser = User::factory()->create(['role_id' => $commomRole->id]);
+
+    $this->actingAs($commomUser)->get($appUrl)
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('permissions', ['webapp.home']));
+});
+
+test("permissions is returned by Inertia response as '*' (all permissions)", function () {
+    /** @var TestCase $this */
+    $appUrl = 'http://app.localhost/';
+
+    $adminRole = Role::create(['title' => 'admin']);
+    $adminUser = User::factory()->create(['role_id' => $adminRole->id]);
+
+    $this->actingAs($adminUser)->get($appUrl)
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('permissions', ['*']));
+});

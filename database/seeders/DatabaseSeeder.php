@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,12 +15,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->createUsers();
+    }
+
+    /**
+     * Seed default users for default routes
+     * development only pourpose
+     */
+    protected function createUsers(): void
+    {
+        $admin = Role::create(['title' => 'admin']);
+        $commom = Role::create(['title' => 'commom']);
+        $permission = Permission::create(['title' => 'webapp.home']);
+
+        $commom->permissions()->attach([$permission->id]);
+
         User::firstOrCreate(
             ['email' => 'lucas@email.com'],
             [
                 'name' => 'Lucas Lannes',
                 'password' => 'password',
                 'email_verified_at' => now(),
+                'role_id' => $admin->id,
             ]
         );
 
@@ -28,6 +46,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Second Lannes',
                 'password' => 'password',
                 'email_verified_at' => now(),
+                'role_id' => $commom->id,
             ]
         );
     }

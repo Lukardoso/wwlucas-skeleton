@@ -23,7 +23,7 @@ class EnsureHasPermission
         throw_unless($routeName, fn () => new LogicException('Route must have a name.'));
 
         if (empty($user->role) || ! $this->hasPermission($user, $routeName)) {
-            abort(403, 'User dont have permissions');
+            abort(403);
         }
 
         return $next($request);
@@ -31,7 +31,7 @@ class EnsureHasPermission
 
     protected function hasPermission(User $user, string $permission): bool
     {
-        if (collect($user->role)->contains('title', 'admin')) {
+        if ($user->role?->title === 'admin') {
             return true;
         }
 

@@ -92,4 +92,18 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    /**
+     * @return array<string|mixed>
+     */
+    public function permissions(): array
+    {
+        if (empty($this->role)) {
+            return [];
+        }
+
+        return $this->role->title !== 'admin'
+            ? $this->role->permissions->pluck('title')->toArray()
+            : ['*'];
+    }
 }
