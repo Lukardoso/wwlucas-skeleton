@@ -29,7 +29,7 @@ export default function Select({ label, name, options, defaultValue }: SelectPro
     }
 
     return (
-        <div className="w-xs">
+        <div>
             <label htmlFor={name}
                 onClick={handleDropDown}
                 className="flex items-center justify-between px-2 py-1 bg-foreground border border-primary/10 rounded shadow select-none cursor-pointer hover:opacity-90"

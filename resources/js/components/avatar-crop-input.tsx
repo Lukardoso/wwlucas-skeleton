@@ -9,7 +9,7 @@ import { User } from '@/types';
 import AvatarController from '@/actions/App/Http/Controllers/AvatarController';
 import { Label } from './ui/label';
 
-export function AvatarCropInput({ defaultImage }: { defaultImage?: string|null }) {
+export function AvatarCropInput({ defaultImage }: { defaultImage?: string | null }) {
     const user = usePage<{ auth: { user: User } }>().props.auth.user;
     const { translate } = useTranslate(profileSheet);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -18,6 +18,12 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string|null }
     const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
     const [finalFile, setFinalFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.currentTarget.click();
+        }
+    }
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -142,7 +148,9 @@ export function AvatarCropInput({ defaultImage }: { defaultImage?: string|null }
         <div>
             <label
                 htmlFor="avatar-upload"
-                className="flex flex-col items-center justify-center w-36 h-36 rounded-full bg-gray-100 cursor-pointer border-2 border-dashed border-gray-300 hover:border-brand transition duration-300 overflow-hidden"
+                tabIndex={0}
+                onKeyDown={handleKeyDown}
+                className="flex flex-col items-center justify-center w-36 h-36 rounded-full bg-gray-100 cursor-pointer border-2 border-dashed border-gray-300 hover:border-brand transition duration-300 overflow-hidden focus-visible::border-4 focus-visible::border-brand"
             >
                 <input
                     id="avatar-upload"

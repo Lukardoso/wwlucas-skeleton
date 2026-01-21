@@ -27,7 +27,7 @@ export default function PasswordInput({ className, ...props }: React.ComponentPr
                 )}
             />
             <div tabIndex={0} onClick={handleTogglePassword} onKeyDown={handleKeyDown}
-                className='absolute right-4 focus:outline-1 outline-offset-2 outline-neutral-300 rounded'>
+                className='absolute right-4 focus-visible:outline-1 outline-offset-2 outline-neutral-300 rounded'>
 
                 {showPassword ? (
                     <LucideEye

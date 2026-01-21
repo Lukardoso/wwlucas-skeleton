@@ -12,7 +12,7 @@ export default function ProfileMenu({ inline = false }: { inline?: boolean }) {
     const username = splittedName.length > 1 ? `${splittedName[0]} ${splittedName.at(-1)}` : user.name;
 
     return (
-        <Link href={profile.edit().url} className={`${inline ? 'flex justify-between items-center gap-2 pr-4 hover:opacity-70' : 'grid place-items-center'}`}>
+        <Link href={profile.edit().url} className={`group ${inline ? 'flex justify-between items-center gap-2 pr-4 hover:opacity-70 focus:outline-0 focus:text-brand focus:font-semibold' : 'grid place-items-center'}`}>
             {user.avatar
                 ? <img className="h-10 w-10 overflow-hidden rounded-full" src={AvatarController.show(user.id).url} alt={user.name} />
                 : <AvatarFallback className="h-10 w-10 fill-white" />
@@ -20,7 +20,7 @@ export default function ProfileMenu({ inline = false }: { inline?: boolean }) {
 
             <p className="capitalize text-xs lg:text-base flex-1">{username}</p>
 
-            {inline && <Arrow className={alreadyOnProfilePage ? 'fill-brand' : 'fill-primary'} />}
+            {inline && <Arrow className={alreadyOnProfilePage ? 'fill-brand' : 'fill-primary group-focus:fill-brand'} />}
         </Link>
     );
 }
