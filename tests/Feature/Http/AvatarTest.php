@@ -18,7 +18,7 @@ test('avatar can be updated', function () {
     Storage::disk('local')->assertExists($user->avatar);
 });
 
-test("avatar can be retrieved by route", function () {
+test('avatar can be retrieved by route', function () {
     Storage::fake('local');
     $file = Storage::putFile('avatars', UploadedFile::fake()->image('avatar.jpg'));
 

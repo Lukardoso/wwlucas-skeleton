@@ -1,6 +1,3 @@
-import FallbackMenuIcon from "@/components/icons/fallback-menu-icon";
-import { ComponentType } from "react";
-
 interface BaseMenuItem {
     title: string;
     permission: string;

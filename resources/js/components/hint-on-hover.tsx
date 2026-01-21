@@ -1,5 +1,4 @@
-import { LucideX } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 type PopoverProps = {

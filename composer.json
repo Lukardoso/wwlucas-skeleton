@@ -69,9 +69,11 @@
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "testfull": [
+            "php artisan optimize:clear",
             "composer run test",
             "composer run stan",
-            "./vendor/bin/pint --test"
+            "./vendor/bin/pint --test",
+            "npm run lint"
         ],
         "pint": [
             "./vendor/bin/pint"

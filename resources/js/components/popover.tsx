@@ -1,5 +1,5 @@
 import { LucideX } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 type PopoverProps = {
     children: React.ReactNode;

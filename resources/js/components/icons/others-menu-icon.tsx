@@ -1,5 +1,4 @@
 import { IconProps } from "@/types/base-icon";
-import { LucideSettings2 } from "lucide-react";
 
 export default function OthersMenuItem({ selected, ...props }: IconProps) {
     return selected

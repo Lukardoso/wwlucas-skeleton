@@ -1,6 +1,5 @@
 import { router } from "@inertiajs/react"
 import Arrow from "./arrow"
-import OthersMenuItem from "./icons/others-menu-icon";
 import { IconComponent } from "@/types/base-icon";
 
 interface MenuInLineBaseProps {

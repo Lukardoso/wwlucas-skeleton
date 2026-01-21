@@ -1,4 +1,4 @@
-import { HtmlHTMLAttributes, use, useState } from "react";
+import { useState } from "react";
 import Arrow from "./arrow";
 import useTranslate from "@/hooks/useTranslate";
 
