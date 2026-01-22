@@ -9,7 +9,7 @@ import permissionMap from "@/pages/webapp/utils/permissions-map";
 export default function Layout({ children, title }: { children: React.ReactNode, title: string }) {
     const [selectedMenu, setSelectedMenu] = useState<string>('');
 
-    const { permissions } = usePage<{ permissions: string[] }>().props;
+    const { permissions, message } = usePage<{ permissions: string[], message: string }>().props;
     const allowedMenus = permissionMap(permissions, menus);
 
     const deviceWidth = window.innerWidth;
@@ -21,6 +21,7 @@ export default function Layout({ children, title }: { children: React.ReactNode,
             permissions: permissions,
             selectedMenu: selectedMenu,
             setSelectedMenu: setSelectedMenu,
+            message: message,
         }}>
 
             <div className="min-h-screen bg-background text-primary">

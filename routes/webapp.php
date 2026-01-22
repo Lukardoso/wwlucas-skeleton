@@ -12,7 +12,7 @@ Route::domain("app.$domain")->group(function () {
 
         Route::middleware(EnsureHasPermission::class)->group(function () {
             Route::get('/', function () {
-                return Inertia::render('webapp/home');
+                return Inertia::render('webapp/home')->with(['message' => 'This is a session message from server...']);
             })->name('webapp.home');
 
             Route::get('/admin', function () {

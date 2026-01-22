@@ -6,11 +6,13 @@ const ConfigContext = createContext<{
     permissions: string[],
     selectedMenu: string,
     setSelectedMenu: (menu: string) => void
+    message: string,
 }>({
     menus: [],
     permissions: [],
     selectedMenu: '',
-    setSelectedMenu: () => { }
+    setSelectedMenu: () => { },
+    message: ''
 });
 
 export default ConfigContext;

@@ -4,8 +4,11 @@ import AppLogoIcon from "@/components/app-logo-icon";
 import MenuWithDropDown from "@/components/menu-with-dropdown";
 import { MenuItem } from "@/types/menu-items";
 import ProfileMenu from "@/components/profile-menu";
+import InnerNotification from "@/components/inner-notification";
 
 export default function DesktopLayout({ children, title }: { children: React.ReactNode, title: string }) {
+    const { message } = useContext(ConfigContext);
+    
     return (
         <div className="h-screen grid grid-cols-[280px_1fr] pr-4 overflow-hidden">
             <Sidebar />
@@ -15,7 +18,12 @@ export default function DesktopLayout({ children, title }: { children: React.Rea
                     {title}
                 </div>
 
-                <div className="h-[95vh] overflow-auto">{children}</div>
+                <div className="relative h-[95vh] overflow-auto">
+
+                    <InnerNotification message={message} />
+
+                    {children}
+                </div>
             </div>
         </div>
     );

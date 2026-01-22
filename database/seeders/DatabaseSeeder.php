@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
         $commom->permissions()->attach([$permission->id]);
 
         User::firstOrCreate(
-            ['email' => 'lucas@email.com'],
+            ['email' => 'admin@email.com'],
             [
-                'name' => 'Lucas Lannes',
+                'name' => 'Admin',
                 'password' => 'password',
                 'email_verified_at' => now(),
                 'role_id' => $admin->id,
@@ -41,9 +41,9 @@ class DatabaseSeeder extends Seeder
         );
 
         User::firstOrCreate(
-            ['email' => 'second@email.com'],
+            ['email' => 'common@email.com'],
             [
-                'name' => 'Second Lannes',
+                'name' => 'Common User',
                 'password' => 'password',
                 'email_verified_at' => now(),
                 'role_id' => $commom->id,

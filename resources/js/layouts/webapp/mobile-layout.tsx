@@ -8,10 +8,11 @@ import { MenuItem } from "@/types/menu-items";
 import useTranslate from "@/hooks/useTranslate";
 import menuSheet from "@/translateSheets/menuSheet";
 import OthersMenuItem from "@/components/icons/others-menu-icon";
+import InnerNotification from "@/components/inner-notification";
 
 export default function MobileLayout({ children, title }: { children: React.ReactNode, title: string }) {
     const [submenus, setSubmenus] = useState<MenuItem[]>([]);
-    const { menus } = useContext(ConfigContext);
+    const { menus, message } = useContext(ConfigContext);
 
     const handleMenu = (menu: MenuItem) => {
         if (menu.href) {
@@ -23,8 +24,10 @@ export default function MobileLayout({ children, title }: { children: React.Reac
     }
 
     return (
-        <div>
+        <div className="relative">
             <Header title={title} />
+
+            <InnerNotification message={message} />
 
             <div className="pb-20 sm:pb-32 overflow-auto">
                 {submenus.length > 0 ? (

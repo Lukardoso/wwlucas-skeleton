@@ -68,6 +68,7 @@
 
     --animate-slide-left: slide-left 0.2s ease-in-out;
     --animate-slide-up: slide-up 0.2s ease-in-out;
+    --animate-slide-bottom: slide-bottom 0.2s ease-in-out;
 }
 
 :root {
@@ -112,7 +113,7 @@
 
 .dark {
     --background: oklch(26% 0.00241 248.201);
-    --foreground: oklch(27.5% 0.00241 248.201);
+    --foreground: oklch(29% 0.00241 248.201);
     --card: oklch(0.145 0 0);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
@@ -184,5 +185,15 @@
 
     to {
         transform: translateY(0);
+    }
+}
+
+@keyframes slide-bottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
     }
 }

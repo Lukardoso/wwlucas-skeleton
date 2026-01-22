@@ -41,6 +41,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'business' => config('business'),
+            'message' => session('message'),
             'permissions' => $request->user()?->permissions(),
         ];
     }

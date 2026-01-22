@@ -5,10 +5,20 @@ import Popup from "@/components/popup";
 import Select from "@/components/select";
 import { SortableTable } from "@/components/sortable-table";
 import Layout from "@/layouts/webapp/layout";
+import { usePage } from "@inertiajs/react";
 import { useState } from "react";
+
+type BusinessData = {
+    website: string;
+    email: string;
+    phone: string;
+    address: string;
+    map: string;
+}
 
 export default function Home() {
     const [open, setOpen] = useState(false);
+    const { business } = usePage<{ business: BusinessData }>().props;
 
     const handleConfirm = () => {
         alert('ação confirmada');
@@ -55,7 +65,33 @@ export default function Home() {
 
     return (
         <Layout title="Test Page">
-            <div className="p-4 pb-12 space-y-12 ">
+            <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+
+                <div className="flex flex-wrap items-end gap-2 p-4 rounded bg-foreground shadow">
+                    <div>
+                        <iframe
+                            src={business.map}
+                            width="300"
+                            height="250"
+                            loading="lazy"
+                            className="mt-4"
+                        />
+                    </div>
+                    <div>
+                        <div>
+                            <h1 className="text-2xl font-semibold">My Business</h1>
+                            <p className="text-xs tracking-wider font-semibold text-primary/50">Data from server via inertia response</p>
+                        </div>
+
+                        <div className="mt-4">
+                            <p>Website: <a href={business.website}>{business.website}</a></p>
+                            <p>Email: {business.email}</p>
+                            <p>Phone: {business.phone}</p>
+                            <p>Address: {business.address}</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="flex flex-wrap gap-2">
                     <Button>
                         Button
@@ -74,7 +110,7 @@ export default function Home() {
                     </Button>
                 </div>
 
-                <div className="max-w-6xl">
+                <div>
                     <SortableTable data={customers} columns={[
                         { key: 'name', type: 'string' },
                         { key: 'email', type: 'string' },
@@ -118,7 +154,6 @@ export default function Home() {
 
                 <div className="flex justify-between items-center">
                     <HintOnHover
-                        className="w-md"
                         directionX="left"
                         directionY="bottom"
                         trigger={<p className="underline cursor-pointer text-brand"> Hint on hover </p>}
