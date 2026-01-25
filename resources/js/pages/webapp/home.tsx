@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import HintOnHover from "@/components/hint-on-hover";
 import Popover from "@/components/popover";
 import Popup from "@/components/popup";
+import SearchBox from "@/components/search-box";
 import Select from "@/components/select";
 import { SortableTable } from "@/components/sortable-table";
 import Layout from "@/layouts/webapp/layout";
@@ -65,7 +66,7 @@ export default function Home() {
 
     return (
         <Layout title="Test Page">
-            <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+            <div className="max-w-7xl mx-auto px-4 pt-12 pb-56 space-y-12">
 
                 <div className="flex flex-wrap items-end gap-2 p-4 rounded bg-foreground shadow">
                     <div>
@@ -177,6 +178,17 @@ export default function Home() {
                 <div className="sm:w-xs">
                     <Select label="Select an option" name="select" options={["Option 1", "Option 2", "Option 3"]} />
                 </div>
+
+                <div className="sm:w-xs">
+                    <SearchBox
+                        endpoint="/fake-api"
+                        db_columns={["id", "name", "email"]}
+                        onSelect={(result) => alert(result)}
+                        onAdd={() => alert('Show add popup')}
+                    />
+                </div>
+
+                <p>End of the line.</p>
             </div>
         </Layout >
     );

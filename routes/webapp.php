@@ -20,6 +20,24 @@ Route::domain("app.$domain")->group(function () {
             })->name('webapp.test');
         });
 
+        Route::get('/fake-api/{search}', function (string $search) {
+            sleep(1);
+            return str_contains($search, 'j')
+                ? response()->json([
+                    [
+                        'id' => 1,
+                        'name' => 'John Doe',
+                        'email' => 'dDkYH@example.com',
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'Jane Doe',
+                        'email' => 'dDkYH@example.com',
+                    ]
+                ])
+                : response()->json([]);
+        });
+
         Route::get('/avatar/{user}', [AvatarController::class, 'show'])->name('avatar.show');
         Route::put('/avatar/{user}', [AvatarController::class, 'update'])->name('avatar.update');
 
