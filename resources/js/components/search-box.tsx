@@ -1,30 +1,26 @@
 import useTranslate from "@/hooks/useTranslate";
 import { Input } from "./ui/input";
 import { PlusIcon, SearchIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-
-type Result = {
-    [key: string]: string | number;
-};
+import useSearch from "@/hooks/use-search";
+import { useRef, useState } from "react";
 
 type SearchBoxProps = {
     endpoint: string;
-    db_columns: string[];
+    columns: string[];
     onSelect: (result: Result) => void;
-    onAdd: () => void;
-};
+    onAdd?: () => void;
+}
 
-export default function SearchBox({
-    endpoint,
-    db_columns,
-    onSelect,
-    onAdd,
-}: SearchBoxProps) {
-    const [results, setResults] = useState<Result[]>([]);
-    const [searching, setSearching] = useState(false);
-    const [query, setQuery] = useState("");
-    const searchRef = useRef<HTMLInputElement>(null);
-    const debounceRef = useRef<NodeJS.Timeout | null>(null);
+type Result = {
+    [key: string]: string | number;
+}
+
+
+export default function SearchBox({ endpoint, columns, onSelect, onAdd, }: SearchBoxProps) {
+    const { searching, results, search, reset } = useSearch<Result[]>(endpoint);
+    const [show, setShow] = useState(false);
+
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const { translate } = useTranslate({
         "Pesquisar": { en: "Search", es: "Buscar" },
@@ -34,114 +30,55 @@ export default function SearchBox({
         "Carregando...": { en: "Loading...", es: "Cargando..." },
     });
 
-    const hasMinLength = (min = 2) => query.length > min;
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value;
 
-    const resetSearch = () => {
-        setResults([]);
-        setQuery("");
-        if (searchRef.current) {
-            searchRef.current.value = "";
+        setShow(() => query.length > 0);
+
+        if (query.length >= 3) {
+            search(query);
+        } else {
+            reset();
         }
-    };
-
-    useEffect(() => {
-        if (!hasMinLength()) {
-            setResults([]);
-            return;
-        }
-
-        if (debounceRef.current) {
-            clearTimeout(debounceRef.current);
-        }
-
-        setSearching(true);
-
-        const sanitizedEndpoint = endpoint.replace(/\/$/, "");
-
-        debounceRef.current = setTimeout(() => {
-            fetch(`${sanitizedEndpoint}/${query}`)
-                .then((res) => res.json())
-                .then((data: Result[]) => setResults(data))
-                .catch(console.error)
-                .finally(() => setSearching(false));
-        }, 500);
-
-        return () => {
-            if (debounceRef.current) {
-                clearTimeout(debounceRef.current);
-            }
-        };
-    }, [query, endpoint]);
+    }
 
     const handleSelect = (result: Result) => {
         onSelect(result);
-        resetSearch();
-    };
+        cleanUp();
+    }
 
     const handleAdd = () => {
-        onAdd();
-        resetSearch();
-    };
+        onAdd?.();
+        cleanUp();
+    }
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.key === "Enter") {
+    const cleanUp = () => {
+        if (inputRef.current) {
+            inputRef.current.value = '';
+        }
+
+        setShow(false);
+
+        reset();
+    }
+
+    const simulateClick = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
             e.currentTarget.click();
         }
-    };
-
-    const renderResultsList = () => (
-        <div className="grid divide-y">
-            {results.map((result) => (
-                <div
-                    key={JSON.stringify(result)}
-                    tabIndex={0}
-                    onClick={() => handleSelect(result)}
-                    onKeyDown={handleKeyDown}
-                    className="flex items-center gap-4 px-4 py-2 cursor-pointer text-sm hover:bg-muted/30 focus-visible:bg-muted/30 outline-0"
-                >
-                    {db_columns.map((column) => (
-                        <span key={column}>{result[column]}</span>
-                    ))}
-                </div>
-            ))}
-        </div>
-    );
-
-    const renderEmptyState = () => {
-        if (!hasMinLength()) {
-            return (
-                <p className="text-sm opacity-70 px-4">
-                    {translate("Digite pelo menos 3 caracteres")}.
-                </p>
-            );
-        }
-
-        if (searching) {
-            return (
-                <p className="text-sm opacity-70 px-4">
-                    {translate("Carregando...")}.
-                </p>
-            );
-        }
-
-        return (
-            <p className="text-sm opacity-70 px-4">
-                {translate("Nenhum resultado encontrado")}.
-            </p>
-        );
-    };
+    }
 
     return (
         <div className="relative">
             <div className="bg-foreground">
                 <label htmlFor="search" className="relative flex items-center">
                     <Input
-                        ref={searchRef}
+                        ref={inputRef}
                         id="search"
                         name="search"
                         autoComplete="off"
                         placeholder={translate("Pesquisar")}
-                        onChange={(e) => setQuery(e.target.value)}
+                        onChange={handleSearch}
                         className="pr-8"
                     />
                     <SearchIcon
@@ -149,25 +86,52 @@ export default function SearchBox({
                         className="absolute right-2 opacity-30 scale-x-[-1]"
                     />
                 </label>
-            </div>
 
-            {hasMinLength(0) && (
-                <div className="absolute min-h-32 w-full mt-1 pt-4 grid grid-rows-[1fr_auto] border rounded shadow bg-foreground text-nowrap overflow-auto animate-slide-bottom">
-                    {results.length > 0
-                        ? renderResultsList()
-                        : renderEmptyState()}
+                {show && (
+                    <div className="absolute mt-1 min-h-32 w-full grid grid-rows-[1fr_auto] bg-foreground rounded shadow border text-sm overflow-auto animate-slide-bottom">
+                        <div>
 
-                    <div
-                        tabIndex={0}
-                        onClick={handleAdd}
-                        onKeyDown={handleKeyDown}
-                        className="flex items-center gap-2 px-4 py-2 mt-4 cursor-pointer font-semibold text-sm bg-muted/30 border-t hover:bg-muted/50 focus-visible:bg-muted/50 outline-0"
-                    >
-                        <span>{translate("Adicionar Novo")}</span>
-                        <PlusIcon width={15} />
+                            {!results && !searching && (
+                                <div className="px-4 py-2 opacity-70">
+                                    {translate("Digite pelo menos 3 caracteres")}
+                                </div>
+                            )}
+
+                            {results && !searching && results.map((result, idx) =>
+                                <div tabIndex={0} key={idx} onKeyDown={simulateClick} onClick={() => handleSelect(result)}
+                                    className="grid grid-flow-col gap-4 text-nowrap p-4 rounded border-muted/30 shadow hover:bg-muted/30 focus-visible:bg-muted/30 outline-none cursor-pointer">
+
+                                    {columns.map(column => (
+                                        <p key={column}>{result[column]}</p>
+                                    ))}
+                                </div>
+                            )}
+
+                            {!searching && results?.length === 0 && (
+                                <div className="px-4 py-2 opacity-70">
+                                    {translate("Nenhum resultado encontrado")}
+                                </div>
+                            )}
+
+                            {searching && (
+                                <div className="px-4 py-2 opacity-70">
+                                    {translate("Carregando...")}
+                                </div>
+                            )}
+
+                        </div>
+
+                        {onAdd && (
+                            <div tabIndex={0} onKeyDown={simulateClick} onClick={handleAdd} className="flex mt-4 px-4 py-4 hover:opacity-70 cursor-pointer focus-visible:bg-muted/30 outline-none">
+                                <div className="sticky left-4 flex items-center gap-1">
+                                    {translate("Adicionar Novo")}
+                                    <PlusIcon className="w-4 h-4" />
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

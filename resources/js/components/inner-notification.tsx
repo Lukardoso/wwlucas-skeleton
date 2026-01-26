@@ -1,16 +1,12 @@
 import { LucideX } from "lucide-react";
-import { ReactNode, use, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
 export default function InnerNotification({ message }: { message?: ReactNode | string | null }) {
     const [showMessage, setShowMessage] = useState(true);
 
-    useEffect(() => {
-        if (message) {
-            hideMessage(10000);
-        }
-    }, [message]);
+    if (message) hideMessage(10000);
 
-    const hideMessage = (time?: number) => {
+    function hideMessage(time?: number) {
         if (time) {
             setTimeout(() => {
                 setShowMessage(false);

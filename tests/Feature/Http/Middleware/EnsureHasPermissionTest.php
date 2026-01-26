@@ -5,7 +5,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Inertia\Testing\AssertableInertia;
 use Tests\TestCase;
 
 beforeEach(function () {

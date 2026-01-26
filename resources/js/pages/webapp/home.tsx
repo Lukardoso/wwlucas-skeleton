@@ -184,8 +184,8 @@ export default function Home() {
                     <div className="sm:w-xs">
                         <SearchBox
                             endpoint="/fake-api"
-                            db_columns={["id", "name", "email"]}
-                            onSelect={(result) => alert(result)}
+                            columns={["id", "name", "email", "address"]}
+                            onSelect={(r) => alert(r.name + ' selected.')}
                             onAdd={() => alert('Show add popup')}
                         />
                     </div>

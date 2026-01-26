@@ -18,7 +18,7 @@ test('permissions is returned by Inertia response', function () {
     $commonUser = User::factory()->create(['role_id' => $commonRole->id]);
 
     $this->actingAs($commonUser)->get($appUrl)
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('permissions', ['webapp.home']));
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('permissions', ['webapp.home']));
 });
 
 test("permissions is returned by Inertia response as '*' (all permissions)", function () {
@@ -29,7 +29,7 @@ test("permissions is returned by Inertia response as '*' (all permissions)", fun
     $adminUser = User::factory()->create(['role_id' => $adminRole->id]);
 
     $this->actingAs($adminUser)->get($appUrl)
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('permissions', ['*']));
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('permissions', ['*']));
 });
 
 test('inertia response returns business data', function () {
@@ -40,7 +40,7 @@ test('inertia response returns business data', function () {
     $adminUser = User::factory()->create(['role_id' => $adminRole->id]);
 
     $this->actingAs($adminUser)->get($appUrl)
-        ->assertInertia(fn(AssertableInertia $page) => $page->where('business', [
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('business', [
             'website' => env('APP_URL'),
             'email' => env('BUSINESS_MAIL', 'contato@wwlucas.dev'),
             'phone' => env('BUSINESS_PHONE', '5533999782780'),

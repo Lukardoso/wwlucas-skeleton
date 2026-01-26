@@ -22,18 +22,21 @@ Route::domain("app.$domain")->group(function () {
 
         Route::get('/fake-api/{search}', function (string $search) {
             sleep(1);
+
             return str_contains($search, 'j')
                 ? response()->json([
                     [
                         'id' => 1,
                         'name' => 'John Doe',
                         'email' => 'dDkYH@example.com',
+                        'address' => 'Some fake address 78 street',
                     ],
                     [
                         'id' => 2,
                         'name' => 'Jane Doe',
                         'email' => 'dDkYH@example.com',
-                    ]
+                        'address' => 'Some fake address 78 street',
+                    ],
                 ])
                 : response()->json([]);
         });
