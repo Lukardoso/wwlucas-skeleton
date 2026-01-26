@@ -49,21 +49,12 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     autoComplete="email"
                                     placeholder={translate("email@exemplo.com")}
                                 />
-                                <InputError message={errors.email} />
+                                <InputError message={translate(errors.email)} />
                             </div>
 
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">{translate("Senha")}</Label>
-                                    {canResetPassword && (
-                                        <TextLink
-                                            href={request()}
-                                            className="ml-auto text-sm text-primary"
-                                            tabIndex={0}
-                                        >
-                                            {translate("Esqueceu sua senha?")}
-                                        </TextLink>
-                                    )}
                                 </div>
 
                                 <div>
@@ -74,7 +65,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                         autoComplete="current-password"
                                         placeholder={translate("Senha")}
                                     />
-                                    <InputError message={errors.password} />
+                                    <InputError message={translate(errors.password)} />
                                 </div>
                             </div>
 
@@ -98,6 +89,16 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 {processing && <Spinner />}
                                 {translate("Entrar")}
                             </Button>
+
+                            {canResetPassword && (
+                                <TextLink
+                                    href={request()}
+                                    className="text-center text-primary"
+                                    tabIndex={0}
+                                >
+                                    {translate("Esqueceu sua senha?")}
+                                </TextLink>
+                            )}
                         </div>
                     </>
                 )}

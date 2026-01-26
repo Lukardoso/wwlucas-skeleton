@@ -29,7 +29,7 @@ export default function Select({ label, name, options, defaultValue }: SelectPro
     }
 
     return (
-        <div>
+        <div className="relative">
             <label htmlFor={name}
                 onClick={handleDropDown}
                 className="flex items-center justify-between px-2 py-1 bg-foreground border border-primary/10 rounded shadow select-none cursor-pointer hover:opacity-90"
@@ -40,7 +40,7 @@ export default function Select({ label, name, options, defaultValue }: SelectPro
 
             <input type="hidden" id={name} name={name} value={selected ?? undefined} />
 
-            <ul className={`mt-1 w-full border border-primary/10 rounded shadow bg-foreground overflow-hidden ${dropdownOpen ? 'block' : 'hidden'}`}>
+            <ul className={`absolute z-10 mt-1 w-full border border-primary/10 rounded shadow-lg bg-foreground overflow-hidden ${dropdownOpen ? 'block' : 'hidden'}`}>
                 {options.map((option, idx) => (
                     <li key={idx} onClick={handleSelected} className="px-2 py-1 text-sm hover:bg-brand hover:text-brand-counter cursor-pointer">
                         {option}

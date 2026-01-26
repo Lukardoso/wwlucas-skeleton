@@ -10,6 +10,7 @@ import { logout } from "@/routes";
 import AvatarController from "@/actions/App/Http/Controllers/AvatarController";
 import PasswordInput from "@/components/PasswordInput";
 import Button from "@/components/button";
+import Workspace from "@/workspace";
 
 export default function Profile() {
     const { translate } = useTranslate(profileSheet);
@@ -17,73 +18,76 @@ export default function Profile() {
 
     return (
         <Layout title="Perfil">
-            <div className="max-w-xl mx-auto p-4 space-y-4">
-                <div className="grid place-items-center">
-                    <AvatarCropInput defaultImage={user.avatar && AvatarController.show(user.id).url} />
-                </div>
+            <Workspace centered>
+                <div className="max-w-xl mx-auto mt-8 p-4 space-y-4">
+                    <div className="grid place-items-center">
+                        <AvatarCropInput defaultImage={user.avatar && AvatarController.show(user.id).url} />
+                    </div>
 
 
-                <div className="p-4 border rounded shadow-lg bg-foreground">
-                    <h2 className="font-semibold">{translate("Senha")}</h2>
+                    <div className="p-4">
+                        <h2 className="font-semibold">{translate("Senha")}</h2>
 
-                    <Form
-                        action={PasswordController.update()}
-                        resetOnSuccess
-                        className="mt-4"
-                    >
-                        {({ processing, errors, wasSuccessful }) => (
-                            <>
-                                <Label>{translate("Atual")}:
-                                    <PasswordInput
-                                        required
-                                        name="current_password"
-                                        id="current_password"
-                                        type="password"
-                                        className={`${errors.current_password ? "border-alert" : ""}`} />
-                                </Label>
-
-                                <div className="mt-4">
-                                    <Label>{translate("Nova")}:
+                        <Form
+                            action={PasswordController.update()}
+                            resetOnSuccess
+                            className="mt-4"
+                        >
+                            {({ processing, errors, wasSuccessful }) => (
+                                <>
+                                    <Label>{translate("Atual")}:
                                         <PasswordInput
                                             required
-                                            name="password"
-                                            id="password"
+                                            name="current_password"
+                                            id="current_password"
                                             type="password"
-                                            className={`${errors.password ? "border-alert" : ""}`}
-                                        />
+                                            className={`${errors.current_password ? "border-alert" : ""}`} />
                                     </Label>
 
-                                    <Label>{translate("Confirme a nova senha")}:
-                                        <PasswordInput
-                                            required
-                                            name="password_confirmation"
-                                            id="password_confirmation"
-                                            type="password"
-                                            className={`${errors.password ? "border-alert" : ""}`}
-                                        />
-                                    </Label>
-                                </div>
+                                    <div className="mt-4">
+                                        <Label>{translate("Nova")}:
+                                            <PasswordInput
+                                                required
+                                                name="password"
+                                                id="password"
+                                                type="password"
+                                                className={`${errors.password ? "border-alert" : ""}`}
+                                            />
+                                        </Label>
 
-                                <div className="my-2 text-sm">
-                                    {errors.current_password && <div className="text-alert">{translate(errors.current_password)}</div>}
-                                    {errors.password && <div className="text-alert">{translate(errors.password)}</div>}
-                                    {wasSuccessful && <div className="text-success">{translate("Senha alterada com sucesso")}</div>}
-                                </div>
+                                        <Label>{translate("Confirme a nova senha")}:
+                                            <PasswordInput
+                                                required
+                                                name="password_confirmation"
+                                                id="password_confirmation"
+                                                type="password"
+                                                className={`${errors.password ? "border-alert" : ""}`}
+                                            />
+                                        </Label>
+                                    </div>
 
-                                <div className="grid gap-2">
-                                    <Button disabled={processing} type="submit" className="mt-4">{translate("Mudar senha")}</Button>
-                                </div>
-                            </>
-                        )}
-                    </Form>
+                                    <div className="my-2 text-sm">
+                                        {errors.current_password && <div className="text-alert">{translate(errors.current_password)}</div>}
+                                        {errors.password && <div className="text-alert">{translate(errors.password)}</div>}
+                                        {wasSuccessful && <div className="text-success">{translate("Senha alterada com sucesso")}</div>}
+                                    </div>
 
-                    <Link
-                        href={logout()}
-                        className="w-full mt-6 px-2 py-1 border-t text-sm text-destructive hover:opacity-80 cursor-pointer">
-                        {translate("Sair do aplicativo")}
-                    </Link>
+                                    <div className="grid gap-2">
+                                        <Button disabled={processing} type="submit" className="mt-4">{translate("Mudar senha")}</Button>
+                                    </div>
+                                </>
+                            )}
+                        </Form>
+
+                        <Link
+                            href={logout()}
+                            className="w-full mt-6 px-2 py-1 border-t text-sm text-destructive hover:opacity-80 cursor-pointer">
+                            {translate("Sair do aplicativo")}
+                        </Link>
+                    </div>
                 </div>
-            </div>
+
+            </Workspace>
         </Layout>
     );
 }

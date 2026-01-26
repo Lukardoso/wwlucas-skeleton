@@ -152,7 +152,7 @@ export default function SearchBox({
             </div>
 
             {hasMinLength(0) && (
-                <div className="absolute min-h-32 w-full mt-1 py-4 grid grid-rows-[1fr_auto] border rounded shadow bg-foreground text-nowrap overflow-auto animate-slide-bottom">
+                <div className="absolute min-h-32 w-full mt-1 pt-4 grid grid-rows-[1fr_auto] border rounded shadow bg-foreground text-nowrap overflow-auto animate-slide-bottom">
                     {results.length > 0
                         ? renderResultsList()
                         : renderEmptyState()}
@@ -161,7 +161,7 @@ export default function SearchBox({
                         tabIndex={0}
                         onClick={handleAdd}
                         onKeyDown={handleKeyDown}
-                        className="flex items-center gap-2 px-4 py-2 mt-4 cursor-pointer font-semibold text-sm bg-muted/30 border-t focus-visible:bg-muted/50 outline-0"
+                        className="flex items-center gap-2 px-4 py-2 mt-4 cursor-pointer font-semibold text-sm bg-muted/30 border-t hover:bg-muted/50 focus-visible:bg-muted/50 outline-0"
                     >
                         <span>{translate("Adicionar Novo")}</span>
                         <PlusIcon width={15} />

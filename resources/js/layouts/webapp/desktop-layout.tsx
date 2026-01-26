@@ -10,11 +10,11 @@ export default function DesktopLayout({ children, title }: { children: React.Rea
     const { message } = useContext(ConfigContext);
     
     return (
-        <div className="h-screen grid grid-cols-[280px_1fr] pr-4 overflow-hidden">
+        <div className="relative h-screen grid grid-flow-col pr-4 overflow-hidden">
             <Sidebar />
 
-            <div className="h-full">
-                <div className="pt-4 border-b-2 text-3xl font-semibold text-brand">
+            <main className="h-full">
+                <div className="ml-[280px] pt-4 border-b-2 text-3xl font-semibold text-brand">
                     {title}
                 </div>
 
@@ -24,7 +24,7 @@ export default function DesktopLayout({ children, title }: { children: React.Rea
 
                     {children}
                 </div>
-            </div>
+            </main>
         </div>
     );
 }
@@ -33,7 +33,7 @@ function Sidebar() {
     const { menus } = useContext(ConfigContext);
 
     return (
-        <div className="h-screen pt-4 pl-4 pr-12 grid grid-rows-[auto_1fr_auto] bg-linear-to-r from-white dark:from-foreground overflow-hidden">
+        <div className="absolute z-50 left-0 top-0 h-screen w-[280px] pt-4 pl-4 pr-12 grid grid-rows-[auto_1fr_auto] bg-linear-to-r from-white dark:from-foreground overflow-hidden">
             <div className="grid place-items-center opacity-30">
                 <AppLogoIcon className="w-28 h-8" />
             </div>

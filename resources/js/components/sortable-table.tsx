@@ -10,11 +10,13 @@ type TableColumn<T> = {
 interface DataTableProps<T extends Record<string, unknown>> {
     data: T[];
     columns: TableColumn<T>[];
+    onRowClick?: (row: T) => void;
 }
 
 export function SortableTable<T extends Record<string, unknown>>({
     data,
     columns,
+    onRowClick = () => {},
 }: DataTableProps<T>) {
     const [sortKey, setSortKey] = useState<keyof T | null>(null);
     const [direction, setDirection] = useState<'asc' | 'desc'>('asc');
@@ -91,6 +93,7 @@ export function SortableTable<T extends Record<string, unknown>>({
                     {sortedData.map((row, i) => (
                         <tr
                             key={i}
+                            onClick={() => onRowClick(row)}
                             className="odd:bg-white dark:odd:bg-neutral-600 even:bg-gray-50 dark:even:bg-neutral-500 hover:bg-gray-100 dark:hover:bg-neutral-700"
                         >
                             {columns.map(col => (
