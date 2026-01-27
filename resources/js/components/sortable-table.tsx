@@ -5,6 +5,7 @@ type ColumnType = 'string' | 'number' | 'date';
 type TableColumn<T> = {
     key: keyof T;
     type: ColumnType;
+    as?: string;
 };
 
 interface DataTableProps<T extends Record<string, unknown>> {
@@ -78,7 +79,7 @@ export function SortableTable<T extends Record<string, unknown>>({
                                 onClick={() => handleSort(col.key)}
                                 className="capitalize cursor-pointer select-none border-b px-4 py-3 text-left font-medium hover:bg-neutral-200 dark:hover:bg-neutral-500"
                             >
-                                {String(col.key)}
+                                {String(col.as ?? col.key)}
                                 {sortKey === col.key && (
                                     <span className="ml-1 text-xs">
                                         {direction === 'asc' ? '▲' : '▼'}

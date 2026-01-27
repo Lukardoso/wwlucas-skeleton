@@ -115,16 +115,16 @@ export default function Home() {
 
                     <div>
                         <SortableTable data={customers} onRowClick={(r) => alert(r.name + ' selected.')} columns={[
-                            { key: 'name', type: 'string' },
+                            { key: 'id', type: 'number', as: 'ID' },
+                            { key: 'name', type: 'string', as: 'Nome' },
                             { key: 'email', type: 'string' },
-                            { key: 'phone', type: 'number' },
-                            { key: 'address', type: 'string' },
-                            { key: 'birthday', type: 'date' },
-                            { key: 'country', type: 'string' },
-                            { key: 'state', type: 'string' },
-                            { key: 'city', type: 'string' },
-                            { key: 'zip_code', type: 'string' },
-                            { key: 'id', type: 'number' },
+                            { key: 'phone', type: 'number', as: 'Telefone' },
+                            { key: 'address', type: 'string', as: 'Endereço' },
+                            { key: 'birthday', type: 'date', as: 'Nascimento' },
+                            { key: 'country', type: 'string', as: 'País' },
+                            { key: 'state', type: 'string', as: 'Estado' },
+                            { key: 'city', type: 'string', as: 'Cidade' },
+                            { key: 'zip_code', type: 'string', as: 'CEP' },
                         ]} />
                     </div>
 
